@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Creation Date</key>
+	<date>2014-11-25T07:00:05Z</date>
+	<key>Creator</key>
+	<dict>
+		<key>Device Agent</key>
+		<string>Macintosh/MacBookPro11,3</string>
+		<key>Generation Date</key>
+		<date>2014-11-25T07:00:05Z</date>
+		<key>Host Name</key>
+		<string>Nobunaga</string>
+		<key>OS Agent</key>
+		<string>MacOS/10.10.1</string>
+		<key>Software Agent</key>
+		<string>Day One Reminders/1.9.6</string>
+	</dict>
+	<key>Entry Text</key>
+	<string></string>
+	<key>Location</key>
+	<dict>
+		<key>Administrative Area</key>
+		<string>广东省</string>
+		<key>Country</key>
+		<string>中国</string>
+		<key>Latitude</key>
+		<real>22.53020394234218</real>
+		<key>Locality</key>
+		<string>深圳市</string>
+		<key>Longitude</key>
+		<real>114.02449763615351</real>
+		<key>Place Name</key>
+		<string>泰然九路 1号</string>
+		<key>Region</key>
+		<dict>
+			<key>Center</key>
+			<dict>
+				<key>Latitude</key>
+				<real>22.530104999999999</real>
+				<key>Longitude</key>
+				<real>-65.975446500000032</real>
+			</dict>
+			<key>Radius</key>
+			<real>15002333.723532828</real>
+		</dict>
+	</dict>
+	<key>Starred</key>
+	<false/>
+	<key>Tags</key>
+	<array/>
+	<key>Time Zone</key>
+	<string>Asia/Chongqing</string>
+	<key>UUID</key>
+	<string>6B93548F09924D3E8DB64D73F4F421DE</string>
+	<key>Weather</key>
+	<dict>
+		<key>Celsius</key>
+		<string>27</string>
+		<key>Description</key>
+		<string>Mostly Sunny</string>
+		<key>Fahrenheit</key>
+		<string>81</string>
+		<key>IconName</key>
+		<string>fair.png</string>
+		<key>Pressure MB</key>
+		<integer>1012</integer>
+		<key>Relative Humidity</key>
+		<integer>70</integer>
+		<key>Service</key>
+		<string>HAMweather</string>
+		<key>Sunrise Date</key>
+		<date>2014-11-24T22:44:05Z</date>
+		<key>Sunset Date</key>
+		<date>2014-11-25T09:39:21Z</date>
+		<key>Visibility KM</key>
+		<integer>6</integer>
+		<key>Wind Bearing</key>
+		<integer>280</integer>
+		<key>Wind Chill Celsius</key>
+		<integer>27</integer>
+		<key>Wind Speed KPH</key>
+		<integer>11</integer>
+	</dict>
+</dict>
+</plist>

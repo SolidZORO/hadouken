@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Creation Date</key>
+	<date>2014-06-22T17:16:37Z</date>
+	<key>Creator</key>
+	<dict>
+		<key>Device Agent</key>
+		<string>iPhone/iPhone5,2</string>
+		<key>Generation Date</key>
+		<date>2014-06-22T17:16:37Z</date>
+		<key>Host Name</key>
+		<string>Minoko</string>
+		<key>OS Agent</key>
+		<string>iOS/7.0.4</string>
+		<key>Software Agent</key>
+		<string>Day One iOS/1.14</string>
+	</dict>
+	<key>Entry Text</key>
+	<string>今天感觸有點多
+
+**自己帶孩子**
+一定要待在父母身邊，寄養在父母之外的環境下都會讓孩子的性格發生畸變，倘若有不可抗拒的因數，那麼至少的，讓父母其中一方留在孩子身邊。 孩子的心靈很脆弱，需要依靠的東西很多，母親是孩子最需要的人，誰離開都好，就是母親不能離去。富士康有很多職員都把孩子寄養在家鄉，由爺爺奶奶帶，每天就隻通過一通電話於父母溝通，這是相當可憐的。
+
+
+**保護動物的意義**
+印象中，最近一次聽到「保護動物」這個詞彙是在小學二年級，保護動物這個概念就好像與生俱來降臨在大家的腦子一樣，大家接受的觀點尤為一致，我想，從來沒有人懷疑保護動物的意義。也從來沒人考慮過為什麼要保護動物。達爾文說過，就算英國不禁止打獵，動物依然回減少，甚至滅絕。
+
+
+
+
+ 
+
+
+</string>
+	<key>Location</key>
+	<dict>
+		<key>Administrative Area</key>
+		<string>广东省</string>
+		<key>Country</key>
+		<string>中国</string>
+		<key>Latitude</key>
+		<real>22.530258638942581</real>
+		<key>Locality</key>
+		<string>深圳市</string>
+		<key>Longitude</key>
+		<real>114.02441393418759</real>
+		<key>Place Name</key>
+		<string>泰然九路 1号</string>
+		<key>Region</key>
+		<dict>
+			<key>Center</key>
+			<dict>
+				<key>Latitude</key>
+				<real>22.530104999999999</real>
+				<key>Longitude</key>
+				<real>114.0245535</real>
+			</dict>
+			<key>Radius</key>
+			<real>196.96251173880881</real>
+		</dict>
+	</dict>
+	<key>Starred</key>
+	<false/>
+	<key>Tags</key>
+	<array/>
+	<key>Time Zone</key>
+	<string>Asia/Shanghai</string>
+	<key>UUID</key>
+	<string>5DBA8DFEA0FF4D459A38E44B15E263CA</string>
+	<key>Weather</key>
+	<dict>
+		<key>Celsius</key>
+		<string>27</string>
+		<key>Description</key>
+		<string>Mostly Clear</string>
+		<key>Fahrenheit</key>
+		<string>81</string>
+		<key>IconName</key>
+		<string>cloudyn.png</string>
+		<key>Pressure MB</key>
+		<integer>1004</integer>
+		<key>Relative Humidity</key>
+		<integer>94</integer>
+		<key>Service</key>
+		<string>HAMweather</string>
+		<key>Sunrise Date</key>
+		<date>2014-06-22T21:41:17Z</date>
+		<key>Sunset Date</key>
+		<date>2014-06-23T11:12:40Z</date>
+		<key>Wind Bearing</key>
+		<integer>110</integer>
+		<key>Wind Chill Celsius</key>
+		<integer>27</integer>
+		<key>Wind Speed KPH</key>
+		<integer>7</integer>
+	</dict>
+</dict>
+</plist>

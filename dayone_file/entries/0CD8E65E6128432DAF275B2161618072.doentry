@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Creation Date</key>
+	<date>2014-11-22T13:50:14Z</date>
+	<key>Creator</key>
+	<dict>
+		<key>Device Agent</key>
+		<string>iPad/iPad4,4</string>
+		<key>Generation Date</key>
+		<date>2014-11-22T13:50:14Z</date>
+		<key>Host Name</key>
+		<string>Kojima</string>
+		<key>OS Agent</key>
+		<string>iOS/8.1</string>
+		<key>Software Agent</key>
+		<string>Day One iOS/1.15.1</string>
+	</dict>
+	<key>Entry Text</key>
+	<string>買下dayone for mac
+
+忽然感覺這個app可以用一下，打算回去在mac也買一個，話說我的dayone在iOS上是限免時候買的，感覺賺到了，mac居然要＄10，感覺很貴很貴。一張gift card就沒了，對了，這個dayone的文件會存到iCloud哪裡啊？</string>
+	<key>Location</key>
+	<dict>
+		<key>Latitude</key>
+		<real>22.550697892166571</real>
+		<key>Longitude</key>
+		<real>114.05833941378133</real>
+	</dict>
+	<key>Starred</key>
+	<false/>
+	<key>Tags</key>
+	<array/>
+	<key>Time Zone</key>
+	<string>Asia/Shanghai</string>
+	<key>UUID</key>
+	<string>0CD8E65E6128432DAF275B2161618072</string>
+</dict>
+</plist>

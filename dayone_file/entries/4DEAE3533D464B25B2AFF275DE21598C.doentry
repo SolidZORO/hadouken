@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Creation Date</key>
+	<date>2014-11-23T15:32:15Z</date>
+	<key>Creator</key>
+	<dict>
+		<key>Device Agent</key>
+		<string>Macintosh/MacBookPro11,3</string>
+		<key>Generation Date</key>
+		<date>2014-11-23T15:32:15Z</date>
+		<key>Host Name</key>
+		<string>Nobunaga</string>
+		<key>OS Agent</key>
+		<string>MacOS/10.10.1</string>
+		<key>Software Agent</key>
+		<string>Day One Mac/1.9.6</string>
+	</dict>
+	<key>Entry Text</key>
+	<string>橫山光輝和他的『三國志』
+
+今天偶然發現東映的三國不是橫山光輝畫的，然後特意到了youtube找了橫山光輝的「三國志』，哇勒，風格大變，有點類似『中華小當家』的風格，也就是更Q了。這點讓我很喜歡。
+
+這部『三國志』動畫片一共47集，而我現在才看到21集，如果不是昨晚弄GAE goagent通宵了，可能會看更多。
+
+無論如何，週三前要看完他。然後就是看橫山光輝的『織田信長』，再然後我想把他的『德川家康』和『武田信玄』也看了，忽然覺得橫山老師很厲害，一個人居然畫了那麼多忠於歷史原著的動漫。只可惜他老人家04年家中發生大火，被燒死了，由於古代戰爭畫面也有很多縱火畫面，所以每次看到縱火的畫面都會想到橫山老師，真是悲慘的命運啊。</string>
+	<key>Location</key>
+	<dict>
+		<key>Administrative Area</key>
+		<string>广东省</string>
+		<key>Country</key>
+		<string>中国</string>
+		<key>Latitude</key>
+		<real>22.530230949381014</real>
+		<key>Locality</key>
+		<string>深圳市</string>
+		<key>Longitude</key>
+		<real>114.02447204056978</real>
+		<key>Place Name</key>
+		<string>天地源盛唐大厦(深圳)</string>
+	</dict>
+	<key>Starred</key>
+	<false/>
+	<key>Tags</key>
+	<array>
+		<string>織田信長</string>
+		<string>橫山光輝</string>
+		<string>三國</string>
+		<string>三國志</string>
+	</array>
+	<key>Time Zone</key>
+	<string>Asia/Chongqing</string>
+	<key>UUID</key>
+	<string>4DEAE3533D464B25B2AFF275DE21598C</string>
+	<key>Weather</key>
+	<dict>
+		<key>Celsius</key>
+		<string>22</string>
+		<key>Description</key>
+		<string>Mostly Clear</string>
+		<key>Fahrenheit</key>
+		<string>72</string>
+		<key>IconName</key>
+		<string>cloudyn.png</string>
+		<key>Pressure MB</key>
+		<integer>1016</integer>
+		<key>Relative Humidity</key>
+		<integer>78</integer>
+		<key>Service</key>
+		<string>HAMweather</string>
+		<key>Sunrise Date</key>
+		<date>2014-11-22T22:42:44Z</date>
+		<key>Sunset Date</key>
+		<date>2014-11-23T09:39:32Z</date>
+		<key>Visibility KM</key>
+		<real>11.265408000000001</real>
+		<key>Wind Bearing</key>
+		<integer>110</integer>
+		<key>Wind Chill Celsius</key>
+		<integer>22</integer>
+		<key>Wind Speed KPH</key>
+		<integer>14</integer>
+	</dict>
+</dict>
+</plist>
