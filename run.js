@@ -12,7 +12,8 @@ console.log('<body>');
 
 
 // 遍歷 S
-rd.eachSync('./dayone_file/entries', function (file, stat, callback) {
+// rd.eachSync('./dayone_file/entries', function (file, stat, callback) {
+rd.eachSync('/Users/SolidZORO/Library/Mobile\ Documents/5U8NS4GX82\~com\~dayoneapp\~dayone/Documents/Journal_dayone/entries', function (file, stat, callback) {
 
         fs.readFile(file, function (err, data) {
             if (err) {
@@ -89,7 +90,7 @@ rd.eachSync('./dayone_file/entries', function (file, stat, callback) {
 
 
             // jade模板渲染 S
-            var fileIndex = fs.readFileSync('hello.jade', {
+            var fileIndex = fs.readFileSync('index.jade', {
                 encoding: 'utf8'
             });
             var templateIndex = jade.compile(fileIndex);
