@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Creation Date</key>
+	<date>2014-11-29T12:05:34Z</date>
+	<key>Creator</key>
+	<dict>
+		<key>Device Agent</key>
+		<string>Macintosh/MacBookPro11,3</string>
+		<key>Generation Date</key>
+		<date>2014-11-29T12:03:34Z</date>
+		<key>Host Name</key>
+		<string>Nobunaga</string>
+		<key>OS Agent</key>
+		<string>MacOS/10.10.1</string>
+		<key>Software Agent</key>
+		<string>Day One Mac/1.9.6</string>
+	</dict>
+	<key>Entry Text</key>
+	<string>試試沒有內容的日誌。</string>
+	<key>Location</key>
+	<dict>
+		<key>Administrative Area</key>
+		<string>广东省</string>
+		<key>Country</key>
+		<string>中国</string>
+		<key>Latitude</key>
+		<real>22.531022534788406</real>
+		<key>Locality</key>
+		<string>深圳市</string>
+		<key>Longitude</key>
+		<real>114.02378036947825</real>
+		<key>Place Name</key>
+		<string>中国广东省深圳市福田区沙头街道车公庙泰然六路48号</string>
+	</dict>
+	<key>Starred</key>
+	<true/>
+	<key>Tags</key>
+	<array>
+		<string>node</string>
+		<string>nodejs</string>
+		<string>測試</string>
+	</array>
+	<key>Time Zone</key>
+	<string>Asia/Chongqing</string>
+	<key>UUID</key>
+	<string>21D3E73CEFE34196AC51A37C02E0A440</string>
+	<key>Weather</key>
+	<dict>
+		<key>Celsius</key>
+		<string>25</string>
+		<key>Description</key>
+		<string>Mostly Cloudy</string>
+		<key>Fahrenheit</key>
+		<string>77</string>
+		<key>IconName</key>
+		<string>mcloudyn.png</string>
+		<key>Pressure MB</key>
+		<integer>1012</integer>
+		<key>Relative Humidity</key>
+		<integer>79</integer>
+		<key>Service</key>
+		<string>HAMweather</string>
+		<key>Sunrise Date</key>
+		<date>2014-11-28T22:46:46Z</date>
+		<key>Sunset Date</key>
+		<date>2014-11-29T09:39:16Z</date>
+		<key>Wind Bearing</key>
+		<integer>120</integer>
+		<key>Wind Chill Celsius</key>
+		<integer>25</integer>
+		<key>Wind Speed KPH</key>
+		<integer>18</integer>
+	</dict>
+</dict>
+</plist>

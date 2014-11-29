@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Activity</key>
-	<string>Stationary</string>
 	<key>Creation Date</key>
 	<date>2014-11-25T14:55:38Z</date>
 	<key>Creator</key>
