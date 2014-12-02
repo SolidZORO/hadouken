@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Creation Date</key>
+	<date>2014-07-12T04:55:29Z</date>
+	<key>Creator</key>
+	<dict>
+		<key>Device Agent</key>
+		<string>Macintosh/MacBookPro11,3</string>
+		<key>Generation Date</key>
+		<date>2014-11-30T04:55:29Z</date>
+		<key>Host Name</key>
+		<string>Nobunaga</string>
+		<key>OS Agent</key>
+		<string>MacOS/10.10.1</string>
+		<key>Software Agent</key>
+		<string>Day One Mac/1.9.6</string>
+	</dict>
+	<key>Entry Text</key>
+	<string>孩子
+
+孩子是一種很可憐的物件，我們每個人都曾是孩子，所以誕生在這個世界上的每一個人都是可憐，所謂的喜悅只不過是在這種焦灼痛苦的環境裏嚐到的一點點甜頭而已。
+
+關於孩子，我很早就像要提筆寫點什麼了，但是應爲惰性想着以後回憶起來再寫，但，記憶總是不靠譜的，要提取的時候總是要漏掉一部分。所以現在的感觸與衝擊與當時想比，肯定是淡了。
+
+首先，作爲孩子父親，我是愛她的，只不過很可能愛得不是那麼明顯或者方式有些特別，直到現在爲止，她都沒有真心說過愛我，更多的是另3個字「不喜歡」。
+
+「一定不可以麻煩別人。」這是我對她說得最多的一句話，也是唯一一句。哭是會打擾到別人的，在安靜的地方笑出聲會給人添麻煩，在公交上唱歌自然也是不行的，只要是會麻煩到別人的事情都是不可以做的。每次我對她發火肯定是應爲她麻煩到別人了。
+
+很自然的，因爲這句話，產生了一系列的化學反映。比如，沒有按時吃飯，那我吃完飯了就把碗筷收好。</string>
+	<key>Location</key>
+	<dict>
+		<key>Administrative Area</key>
+		<string>广东省</string>
+		<key>Country</key>
+		<string>中国</string>
+		<key>Latitude</key>
+		<real>22.53005827965718</real>
+		<key>Locality</key>
+		<string>深圳市</string>
+		<key>Longitude</key>
+		<real>114.02446151548904</real>
+		<key>Place Name</key>
+		<string>天地源盛唐大厦(深圳)</string>
+	</dict>
+	<key>Starred</key>
+	<false/>
+	<key>Tags</key>
+	<array/>
+	<key>Time Zone</key>
+	<string>Asia/Chongqing</string>
+	<key>UUID</key>
+	<string>87353C10569F4E53BD92BD03692A9031</string>
+	<key>Weather</key>
+	<dict>
+		<key>Celsius</key>
+		<string>31</string>
+		<key>Description</key>
+		<string>Clear</string>
+		<key>Fahrenheit</key>
+		<string>89</string>
+		<key>IconName</key>
+		<string>clear.png</string>
+		<key>Relative Humidity</key>
+		<real>78</real>
+		<key>Service</key>
+		<string>Forecast.io</string>
+		<key>Visibility KM</key>
+		<real>9.9800000000000004</real>
+		<key>Wind Bearing</key>
+		<integer>178</integer>
+		<key>Wind Speed KPH</key>
+		<real>15.109999999999999</real>
+	</dict>
+</dict>
+</plist>

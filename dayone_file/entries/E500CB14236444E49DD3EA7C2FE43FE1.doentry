@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Creation Date</key>
+	<date>2014-12-01T15:18:32Z</date>
+	<key>Creator</key>
+	<dict>
+		<key>Device Agent</key>
+		<string>Macintosh/MacBookPro11,3</string>
+		<key>Generation Date</key>
+		<date>2014-12-01T15:18:32Z</date>
+		<key>Host Name</key>
+		<string>Nobunaga</string>
+		<key>OS Agent</key>
+		<string>MacOS/10.10.1</string>
+		<key>Software Agent</key>
+		<string>Day One Mac/1.9.6</string>
+	</dict>
+	<key>Entry Text</key>
+	<string>麻煩給我一個用OSX的理由
+
+我是一個工程師，日常的工作中，超過80%的時間被設計、代碼、服務器維護所佔據。從一開始接觸電腦到工作這些年，都在用著Windows，算下來足足有14年。
+
+而萌生買MacBook的念頭並不是最近才有的，從早些年嘗試吃一吃黑頻果到現在已有幾年時間，與其說入手MacBook，還不如說是買OSX送了台MacBook來得恰當，MacBook硬件本身我真沒有特別在意。
+
+不過後來我還是有花了幾小時在線上做功課，最後買了一台15英吋的rMBP，512G_SSD，16G_RAM，有帶獨立顯卡，算高配。買東西是個大事，既然要買就要有買了用一輩子的覺悟。
+
+
+首先，講講我之前都用Windows在幹嘛：
+
+Photoshop，處理一切像素設計。
+Illustrator，處理一切矢量設計。
+SublimeText，一旦依賴，就很難離開，有他我連Vim都不愛用了。
+git，協同開發必備，沒什麼好說的。
+xShell，Windows上最好的免費SSH客戶端。
+FileZilla，Windows上最好的免費FTP客戶端。
+executor，快捷啟動，比較複雜，免費，國內有類似的叫altrun。
+listary，快速定位文件路徑，免費，用了可延長你的壽命。
+OneNote，多平台同步便簽，ORC光學識別圖片上的文字，免費。
+bat，windows自家的批處理，買系統免費送的。
+
+老實說，除去Chrome和QQ這種必備App之外，以上的清單即是我在Windows上的生產力工具。有很多都是開源免費的，但是功能絕不含糊，瑞士軍刀級別，指那打那，熟練起來提升效率顯著，我有時候甚至懷疑，如果離開了executor和listary，我的工作效率是否會跌個500%？
+
+那我需要OSX嗎？有什麼事情非得在上面做嗎？當然沒有！Windows對我來說已足夠好了，在強調一次，我不在意MacBook這台機器，而看重的是OSX。
+
+原因有很多，這裏列幾條主要的：
+
+因為我用iPhone、iPad，而且包括郵件在內的所有服務我都從Google checkout到了iCloud，算是iCloud重度用戶，很多時候我在iPhone系統自帶的「待辦」上寫下 TODO，但是回到Windows的時候，我卻沒辦法看到這條TODO，雖說配合Apple自家的iCloud for Windows結合Outlook可以勉強做到同步，但是依然沒有很直觀就對了，為此我感到很心塞。
+
+Windows上的命令行功能太少，配合vi用起來不舒服，即便是用更高階的PowerShell也是如此。
+
+文件不區分大小寫，本來Windows下debug沒問題的文件，上載到服務器中就找不到，後來才發現原來是文件大小寫的關係。
+
+聽說OSX上使用PS很優雅，因為OSX的系統UI很優雅，會讓你做設計的時候靈感爆表。
+
+更好的字體渲染技術、etc⋯⋯
+
+
+綜合以上種種原因，我認為換OSX勢在必行，期待OSX能把這些問題通通解決掉。
+
+
+
+結果用上OSX後，以上提到的種種問題雖然都得以解決，但是，更可怕的惡夢卻來了。
+
+
+惡夢陳述：
+
+快捷鍵惡夢
+起初我是非常非常非常非常非常非常不適應OSX的快捷鍵，但是由於我個人非常在意物品或App的原生型態，不想輕易去改動設定，努力了2個星期，結果還是敗了，10幾年windows keymap習慣，真的改不掉了，若是普通的使用者，只要cmd＋c，cmd＋y那就還好，我用PS的時候需要shift+cmd+option+control+s來輸出PNG規格的圖像，而且這個操作是經常性需要做的。再就是，也是最後促使我修改OSX按鍵的最後忍耐極限的關鍵，PS中縮放畫布居然是按control（小拇指）＋鼠標滾輪，OMG，這怎麼能忍！這簡直就是強迫讓我我放棄用Alt（大拇指）＋鼠標滾輪5～6年的習慣啊？
+
+所以，逆我者亡，一改了之！
+
+改完之後，整個世界都安靜了，工作效率瞬間提升500％，PS 100多個快捷鍵完美回歸，而且任意穿梭於OSX，Windows，Linux都不再有keymap問題。
+
+
+
+
+
+文件管理惡夢
+OSX自帶的文件管理器finder，每一次打開我都要糾結一下，因為沒有快捷鍵的關係，我每次使用都要把手從鍵盤移動到用觸控板或鼠標，用鼠標把他打開，進去之後依舊不能回去碰鍵盤，鍵盤不能文件夾操作，enter鍵不能進入文件夾而是對文件重命名，delete鍵不能返回上一層目錄而是什麼都不做。後來我得知，進入文件夾是cmd＋箭頭下，返回上一層目錄是cmd＋剪頭上。剪切是按了cmd＋c，再按cmd＋opt＋v就成剪切了，查看文件屬性信息大小etc是cmd＋i，查看N個選中文件的大小是cmd＋ctlr＋i。
+
+當然，這些都是小問題，並不影響效率，讓效率大減的是沒有目錄書結構的sidebar，這樣找文件就變得非常不直觀，寫代碼的時候直接用terminal不用finder還好，做設計的時候就必須看縮略圖來找文件，通常目錄層級稍微多幾層，找著找著就陷入文件夾地獄了。</string>
+	<key>Location</key>
+	<dict>
+		<key>Administrative Area</key>
+		<string>廣東</string>
+		<key>Country</key>
+		<string>中華人民共和國</string>
+		<key>Latitude</key>
+		<real>22.530243153654443</real>
+		<key>Locality</key>
+		<string>深圳</string>
+		<key>Longitude</key>
+		<real>114.02451884386973</real>
+		<key>Place Name</key>
+		<string>上沙一路</string>
+	</dict>
+	<key>Starred</key>
+	<false/>
+	<key>Tags</key>
+	<array/>
+	<key>Time Zone</key>
+	<string>Asia/Chongqing</string>
+	<key>UUID</key>
+	<string>E500CB14236444E49DD3EA7C2FE43FE1</string>
+	<key>Weather</key>
+	<dict>
+		<key>Celsius</key>
+		<string>17</string>
+		<key>Description</key>
+		<string>Cloudy</string>
+		<key>Fahrenheit</key>
+		<string>63</string>
+		<key>IconName</key>
+		<string>cloudyn.png</string>
+		<key>Pressure MB</key>
+		<integer>1020</integer>
+		<key>Relative Humidity</key>
+		<integer>68</integer>
+		<key>Service</key>
+		<string>HAMweather</string>
+		<key>Sunrise Date</key>
+		<date>2014-11-30T22:48:07Z</date>
+		<key>Sunset Date</key>
+		<date>2014-12-01T09:39:22Z</date>
+		<key>Wind Bearing</key>
+		<integer>30</integer>
+		<key>Wind Chill Celsius</key>
+		<integer>17</integer>
+		<key>Wind Speed KPH</key>
+		<integer>25</integer>
+	</dict>
+</dict>
+</plist>

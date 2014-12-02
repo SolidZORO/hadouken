@@ -1,117 +1,98 @@
 var fs = require("fs");
-var rd = require('rd');
 var parseString = require('xml2js').parseString;
 var jade = require('jade');
 
-var entries = Object;
+// dayone的日誌目錄
+var DIR_ENTRIES = './dayone_file/entries/';
+// dayone的照片目錄
+var DIR_PHOTOS = './dayone_file/photos/';
+
+// 所有日誌
+var entries = {};
 
 
-var header = jade.renderFile('header.jade');
-console.log(header);
-console.log('<body>');
+// 遍歷文件 S
+fs.readdirSync(DIR_ENTRIES).forEach(function (file, i) {
+
+    // 單篇日誌
+    var entrie = {};
+
+    var entrie_xml = fs.readFileSync(DIR_ENTRIES + file, 'utf-8');
+    parseString(entrie_xml, function (err, entrie_json) {
+        if (err) {
+            return 'err';
+        };
+
+        // id賦值
+        entrie.id = entrie_json.plist.dict[0].string[2];
+        // 日期賦值
+        entrie.date = entrie_json.plist.dict[0].date[0];
+        // 文章內容
+        var e_string = entrie_json.plist.dict[0].string[0];
+
+        // 把文章內容一分為二（標題與內容）S
+        if (e_string !== '') {
+
+            // 匹配只有 標題
+            var reg1 = /(.{2,})(?:\n\n)?/;
+            // 匹配有 標題 和 內容
+            var reg2 = /(.{2,})(?:\n\n)?((?:.|\n)*)?/;
+            // 結果只有 標題
+            var result1 = reg1.exec(e_string);
+            // 結果有 標題和內容
+            var result2 = reg2.exec(e_string);
 
 
-// 遍歷 S
-// rd.eachSync('./dayone_file/entries', function (file, stat, callback) {
-rd.eachSync('/Users/SolidZORO/Library/Mobile\ Documents/5U8NS4GX82\~com\~dayoneapp\~dayone/Documents/Journal_dayone/entries', function (file, stat, callback) {
+            // 如果找到標題，先賦值
+            if (result1[0]) {
 
-        fs.readFile(file, function (err, data) {
-            if (err) {
-                return 'err';
-            };
+                // 標題賦值
+                entrie.title = result1[0].replace(/[\r\n]/g, "");
 
-            // 處理日誌 S
-            parseString(data, function (err, data) {
-                if (err) {
-                    return 'err';
+                // 照片賦值
+                var e_photo = DIR_PHOTOS + entrie.id + '.jpg';
+                if (fs.existsSync(e_photo)) {
+                    entrie.photo = e_photo;
                 };
 
-                // 文章id
-                var id = data.plist.dict[0].string[2];
-                // 文章內容
-                var string = data.plist.dict[0].string[0];
-                // 文章日期
-                var date = data.plist.dict[0].date[0];
-                entries.date = date;
+                // 內容賦制
+                if (result2[2]) {
+                    var e_text = result2[2];
+                } else {
+                    var e_text = "這篇日誌沒有內容。";
+                };
+                entrie.text = e_text;
+            }
+        }
+        // 把文章內容一分為二（標題與內容）S
+
+        // 把單個日誌帶入entries數組
+
+    });
+    // 處理日誌 E
 
 
+    // 渲染並寫入 S
+    var template_entrie = jade.compile(fs.readFileSync('entrie.jade'));
+    var html_entrie = template_entrie({
+        entrie: entrie
+    });
+    fs.writeFileSync('./entrie/' + entrie.id + '.html', html_entrie);
+    // 渲染並寫入 E
 
+    entries[i] = entrie;
 
-                // 把文章內容一分為二（標題與內容）S
-                if (string !== '') {
-
-                    // 匹配只有 標題
-                    var reg1 = /(.{2,})(?:\n\n)?/;
-                    // 匹配有 標題 和 內容
-                    var reg2 = /(.{2,})(?:\n\n)?((?:.|\n)*)?/;
-
-                    // 結果只有 標題
-                    var result1 = reg1.exec(string)
-                        // 結果有 標題和內容
-                    var result2 = reg2.exec(string)
-
-
-                    var title;
-                    var text;
-
-                    // 如果找到標題，先賦值
-                    if (result1[0]) {
-
-                        var PHOTO = './dayone_file/photos/' + id + '.jpg';
-                        // 判斷文章是否有圖片 S
-
-                        fs.exists(PHOTO, function (exists) {
-                            if (exists) {
-                                entries.photo = PHOTO;
-                            }
-                        });
-                        // 判斷文章是否有圖片 S
-                        // console.log(entries.photo);
-
-
-
-                        title = result1[0].replace(/[\r\n]/g, "");
-                        entries.title = title;
-
-                        // 找到內容，再賦值。
-                        if (result2[2]) {
-                            text = result2[2];
-                            entries.text = text;
-                        } else {
-                            text = "這篇日誌沒有內容。";
-                            entries.text = text;
-                        };
-                    }
-                }
-                // 把文章內容一分為二（標題與內容）S
-
-            });
-            // 處理日誌 E
-
-
-            // jade模板渲染 S
-            var fileIndex = fs.readFileSync('index.jade', {
-                encoding: 'utf8'
-            });
-            var templateIndex = jade.compile(fileIndex);
-
-            var htmlIndex = templateIndex({
-                entries: entries
-            });
-            // jade模板渲染 E
-
-
-            console.log(htmlIndex);
-
-        })
-
-    }
-
-);
-
-setTimeout(function () {
-    console.log('</body></html>');
-}, 500);
-
-
+});
 // 遍歷 E
+
+
+
+// 渲染並寫入 S
+var template_index = jade.compile(fs.readFileSync('index.jade'));
+var html_index = template_index({
+    entries: entries
+});
+fs.writeFileSync('index.html', html_index);
+// 渲染並寫入 E
+
+console.log("日誌已輸出到index.html");
