@@ -1,0 +1,17 @@
+doctype html
+html#html-top.no-js(lang='zh')
+    head
+        meta(charset='utf-8')
+        title DayOne
+    body
+        each entrie in entries
+            .item
+                a(href='./day/' + entrie.url + '.html')
+                    h2 #{entrie.title}
+                div.date #{entrie.date}
+
+                - if (entrie.photo)
+                    .photo
+                        img(src=entrie.photo_480, style="width: 480px")
+                p.text !{entrie.text}
+            hr

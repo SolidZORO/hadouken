@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Creation Date</key>
+	<date>2014-11-29T14:46:29Z</date>
+	<key>Creator</key>
+	<dict>
+		<key>Device Agent</key>
+		<string>Macintosh/MacBookPro11,3</string>
+		<key>Generation Date</key>
+		<date>2014-11-29T21:17:42Z</date>
+		<key>Host Name</key>
+		<string>Nobunaga</string>
+		<key>OS Agent</key>
+		<string>MacOS/10.10.1</string>
+		<key>Software Agent</key>
+		<string>Day One Mac/1.9.6</string>
+	</dict>
+	<key>Entry Text</key>
+	<string>深圳書城打折未眠夜
+
+因為前兩個星期看到有68折活動日的消息，所以今天特別去了。
+
+其實也沒買多少，本來想買紫龍書（編譯原理第三版），想了一下，放棄了，我不是做編程的可能也實在看不下去。
+
+最後買了本動物書，RESTfull API設計相關。別的書都是關於做生意的，哈哈，要想寫出好App，還是得和商業掛勾才對。
+
+（圖：眾動物書中，犀牛書真是翹楚，那麼厚厚厚一本。）</string>
+	<key>Starred</key>
+	<false/>
+	<key>Tags</key>
+	<array>
+		<string>橫山光輝</string>
+		<string>打折</string>
+		<string>三國</string>
+	</array>
+	<key>Time Zone</key>
+	<string>Asia/Chongqing</string>
+	<key>UUID</key>
+	<string>4FA8937CC0394FEEB1268546B184F99F</string>
+</dict>
+</plist>
