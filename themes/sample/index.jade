@@ -2,13 +2,13 @@ doctype html
 html#html-top.no-js(lang='zh')
     head
         meta(charset='utf-8')
-        title DayOne
+        title dayone
     body
         each entrie in entries
             .item
                 a(href='./day/' + entrie.url + '.html')
                     h2 #{entrie.title}
-                div.date #{entrie.date}
+                h5.date #{entrie.date}
 
                 - if (entrie.photo)
                     .photo
