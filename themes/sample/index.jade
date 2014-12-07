@@ -1,17 +1,22 @@
-doctype html
-html#html-top.no-js(lang='zh')
-    head
-        meta(charset='utf-8')
-        title dayone
-    body
-        each entrie in entries
-            .item
-                a(href='./day/' + entrie.url + '.html')
-                    h2 #{entrie.title}
-                h5.date #{entrie.date}
+extends ./layout/default.jade
 
-                - if (entrie.photo)
-                    .photo
-                        img(src=entrie.photo_480, style="width: 480px")
-                p.text !{entrie.text}
-            hr
+block title
+    title SolidZORO
+block style
+    link(rel='stylesheet', href='./themes/sample/assets/css/style.css')
+block script
+    script(src='./themes/sample/assets/js/app.js')
+
+block container
+    .saya-container
+        .saya
+            each entrie in entries
+                .item
+                    a(href='./day/' + entrie.url + '.html')
+                        h2.title #{entrie.title}
+                    .date #{entrie.date}
+
+                    - if (entrie.banner)
+                        .banner-thumb
+                            img(src=entrie.banner_480)
+                    .typo !{entrie.text}

@@ -5,3 +5,5 @@ node_modules/*
 attachment/origin/*
 attachment/entries/*
 attachment/thumbnail/480/*
+day/*.html
+tag/*.html
