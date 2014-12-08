@@ -1,18 +1,25 @@
-dayone2html
+HADOUKEN 
 ===========
-
-處理dayone for mac的文件，並生成html。
-
+HADOUKEN是一個用nodejs寫的批處理工具，用於把dayone的日誌處理成html。用於分享或部署到github靜態部落格中。
+項目名HADOUKEN（波動拳）源於街霸裏Ryu（隆）必殺技。Ryu是我玩街霸時最愛用的角色。
 
 
 使用方式
 ------------
-```node run.js
-git回來， 執行一下就可以生成index索引和日誌以及tag頁。
-目前版本需要做一些手工修改，比如圖片需要自己拷貝到attachment/origin下，tag合集功能也沒有，還不能一鍵，但總算成型了。
+git回來，先修改run.js裏的DIR_ENTRIES為你自己的dayone日誌目錄，然後切到終端：
+```
+node install
+node run.js
+```
+即可生成dayone日誌索引以日誌正文。
+
+下一個版本預計添加
+------------
+自動複製附件到attachement。
+自動詢問git更新。
 
 
-版本更新
+版本日誌
 ------------
 v0.4 話說明天要上班了，這個是帶tag頁的可用版本，一切都很好：）
 
