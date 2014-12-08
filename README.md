@@ -1,6 +1,6 @@
 HADOUKEN
 ===========
-這是一個用nodejs寫的[dayone](href="dayoneapp.com" target="_blank")日誌轉換工具，用於把dayone的日誌處理成html，用於分享或部署到github部落格中。
+這是一個用nodejs寫的[dayone](href="dayoneapp.com" target="_blank")日誌轉換工具，用於把dayone的日誌處理成html。
 
 項目名HADOUKEN，中文翻譯為「波動拳」，源於街霸裏Ryu（隆）的必殺技，Ryu是我玩街霸時最愛用的角色。
 
