@@ -1,9 +1,7 @@
 node_modules/
-node_modules/*
 .tags
 .gitignore
-attachment/origin/*
-attachment/entries/*
-attachment/thumbnail/480/*
-day/*.html
-tag/*.html
+.ctagsignore
+attachment
+day
+tag
