@@ -1,10 +1,10 @@
 HADOUKEN
 ===========
-HADOUKEN這是一個用nodejs寫的[dayone](href="dayoneapp.com" target="_blank")日誌轉換工具，用於把dayone的日誌處理成html。
+HADOUKEN是一個用nodejs寫的[dayone](href="dayoneapp.com" target="_blank")日誌轉換工具，用於把dayone的日誌處理成html。
 
 項目名HADOUKEN，中文翻譯為「波動拳」，源於街霸裏Ryu（隆）的必殺技，Ryu是我玩街霸時最愛用的角色。
 
-還搞不明白？沒關係，見下圖。
+還搞不明白HADOUKEN為何物？沒關係，見下圖。
 ![HADOUKEN](https://raw.githubusercontent.com/SolidZORO/HADOUKEN/master/HADOUKEN.jpg)
 
 
