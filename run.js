@@ -28,11 +28,13 @@ var CONFIG = {
     // 縮略圖大小（自定義）
     BANNER_THUMB_SIZE: '480',
     // 几篇日志翻一页？
-    PAGE_NUM: 2,
+    PAGE_NUM: 15,
     // 站點名稱
-    SITE_NAME: 'SolidZORO的部落格',
+    SITE_NAME: 'SolidZORO',
     // 站點說明
-    SITE_DESC: 'Yuki的黑魔法師。',
+    SITE_DESC: '黑魔法師。',
+    // 站點網址
+    SITE_URL: 'http://solidzoro.com',
 
     ATTACHMENT: 'attachment',
     BANNER_ORIGIN: 'origin',
