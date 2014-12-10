@@ -1,0 +1,42 @@
+extends ./layout/default
+
+block title
+    title #{day.title} - SolidZORO
+
+block container
+    .saya-container
+        .saya
+            .detaile
+                .item
+                    h1.title #{day.title}
+                    .date #{day.data_zh}
+                    .typo
+                        - if (day.banner)
+                            .banner
+                                img(src= HOME_PATH + day.banner)
+                        |!{day.content_html}
+
+                    - if (day.tags)
+                        .tags
+                            span 標籤：
+                            each tag in day.tags
+                                a(href= HOME_PATH + DIRNAME_TAG + '/'+ tag + '.html') #{tag}
+
+
+
+                .item.comment
+                    .ds-thread(
+                            data-thread-key="#{day.date}"
+                            data-title="#{day.title}"
+                            data-url="http://solidzoro.com/day/#{day.url}.html"
+                    )
+                    script(type="text/javascript").
+                        var duoshuoQuery = {short_name:"zoro"};
+                        (function() {
+                            var ds = document.createElement('script');
+                            ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                            ds.charset = 'UTF-8';
+                            (document.getElementsByTagName('head')[0]
+                            || document.getElementsByTagName('body')[0]).appendChild(ds);
+                        })();

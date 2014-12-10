@@ -1,0 +1,24 @@
+// 以下sp開頭的都是CSS sprite
+.spriteMain {
+    display: block;
+    background-repeat: no-repeat;
+    background-image: url(../img/sp_main.png);
+    background-image: -webkit-image-set(url(../img/sp_main.png) 1x, url(../img/sp_main@2x.png) 2x);
+
+    @media (-webkit-min-device-pixel-ratio:1.5),(min--moz-device-pixel-ratio:1.5),(-o-min-device-pixel-ratio:3 / 2),(min-device-pixel-ratio:1.5) {
+        background-image: url(../img/sp_main@2x.png);
+        background-size: 1000px auto;
+    }
+}
+
+// .spriteText {
+//     display: block;
+//     background-repeat: no-repeat;
+//     background-image: url(../img/sp_text.png);
+//     background-image: -webkit-image-set(url(../img/sp_text.png) 1x, url(../img/sp_text@2x.png) 2x);
+
+//     @media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3 / 2), (min-device-pixel-ratio: 1.5) {
+//         background-image: url(../img/sp_text@2x.png);
+//         background-size: 1000px auto;
+//     }
+// }

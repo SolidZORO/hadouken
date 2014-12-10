@@ -18,8 +18,8 @@ var banner = ['/**', ' * mod date <%= date %>', ' */', ''].join('\n');
 
 
 //// LESS 2 CSS ////////////////////////////////////////////////////////////////////////////////////////////////
-gulp.task('less_sample', function () {
-    gulp.src(['themes/sample/_source/less/*'])
+gulp.task('less_ryu', function () {
+    gulp.src(['themes/ryu/_source/less/style.less'])
         .pipe(less())
         .pipe(prefix())
         .pipe(minifyCSS({
@@ -28,7 +28,7 @@ gulp.task('less_sample', function () {
         .pipe(header(banner, {
             date: date
         }))
-        .pipe(gulp.dest('themes/sample/assets/css'))
+        .pipe(gulp.dest('themes/ryu/assets/css'))
         .pipe(livereload());
 });
 
@@ -40,9 +40,9 @@ var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 
-gulp.task('js_sample', function () {
+gulp.task('js_ryu', function () {
     gulp.src([
-        "themes/sample/_source/js/*"
+        "themes/ryu/_source/js/*"
     ])
         .pipe(concat('aqq.js'))
         .pipe(uglify())
@@ -50,7 +50,7 @@ gulp.task('js_sample', function () {
             date: date
         }))
         .pipe(rename('app.js'))
-        .pipe(gulp.dest('themes/sample/assets/js'));
+        .pipe(gulp.dest('themes/ryu/assets/js'));
 });
 
 
@@ -59,11 +59,11 @@ gulp.task('js_sample', function () {
 //// 監控 //////////////////////////////////////////////////////////////////////////////////////////////////////
 gulp.task('watching', function () {
 
-    gulp.watch('themes/sample/_source/less/*.less', ['less_sample']);
-    gulp.watch('themes/sample/_source/js/*.js', ['js_sample']);
+    gulp.watch('themes/ryu/_source/less/*.less', ['less_ryu']);
+    gulp.watch('themes/ryu/_source/js/*.js', ['js_ryu']);
 
     var server = livereload();
-    gulp.watch('themes/sample/**/*').on('change', function (file) {
+    gulp.watch('themes/ryu/**/*').on('change', function (file) {
         server.changed(file.path);
     });
 
@@ -74,7 +74,7 @@ gulp.task('watching', function () {
 
 //// 執行 //////////////////////////////////////////////////////////////////////////////////////////////////////
 gulp.task('default', [
-    'less_sample',
-    'js_sample',
+    'less_ryu',
+    'js_ryu',
     'watching'
 ]);

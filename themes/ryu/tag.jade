@@ -1,0 +1,23 @@
+extends ./layout/default.jade
+
+block title
+    title #{title} - tag - SolidZORO
+
+block container
+    .saya-container
+        .saya
+            h1.title tag:
+                code #{title}
+            .list
+                each tag in tags
+                    .item
+                        h2.title
+                            a(href= HOME_PATH + DIRNAME_DAY + '/' + tag.url + '.html') #{tag.title}
+                        .date #{tag.date}
+
+                        .typo
+                            - if (tag.banner_thumb)
+                                .banner-thumb
+                                    img(src= HOME_PATH + tag.banner_thumb)
+                            |!{tag.content_html}
+
