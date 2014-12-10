@@ -1,24 +1,24 @@
 extends ./layout/default.jade
 
 block title
-    title SolidZORO
+    title #{title} - #{CONFIG.SITE_NAME}
 
 block container
     .saya-container
         .saya
             .list
-                each day in one_page
+                each data in datas
                     .item
                         h2.title
-                            a(href= HOME_PATH + DIRNAME_DAY + '/' + day.url + '.html') #{day.title}
-                        .date #{day.data_zh}
+                            a(href= HOME_PATH + PATH.PAGE + data.url + '.html') #{data.title}
+                        .date #{data.data_zh}
 
                         .typo
-                            - if (day.banner_thumb)
+                            - if (data.banner_thumb)
                                 .banner-thumb
-                                    img(src= HOME_PATH + day.banner_thumb)
-                            - if (day.content_list_html)
-                                |!{day.content_list_html}
+                                    img(src= HOME_PATH + data.banner_thumb)
+                            - if (data.content_list_html)
+                                |!{data.content_list_html}
                             - else
-                                |!{day.content_html}
+                                |!{data.content_html}
             include ./include/pagination.jade

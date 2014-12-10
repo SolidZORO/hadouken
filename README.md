@@ -2,7 +2,15 @@ HADOUKEN
 ===========
 HADOUKEN是一個用nodejs寫的[dayone](href="dayoneapp.com" target="_blank")日誌轉換工具，用於把dayone的日誌處理成html。
 
-項目名HADOUKEN，中文翻譯為「波動拳」，源於街霸裏Ryu（隆）的必殺技，Ryu是我玩街霸時最愛用的角色。
+> 項目名HADOUKEN，中文翻譯為「波動拳」，源於街霸裏Ryu（隆）的必殺技。
+
+老實說，dayone的使用體驗很好，客戶端也是除Windows之外都有部署，在上面鍵入文字非常有感覺，作者應該是想把dayone做成一個足夠好、好到足夠把你的「日誌」數碼化的工具。
+
+但也正因如此，日誌其實是一個很個人的東西，所以dayone上不大可能見到有「發佈到網絡」、「分享到微博」這樣的功能。那⋯⋯既然官方沒有給予支持，那我就來做做看好了，正好最近有學習Javascript的念頭。
+
+所以，HADOUKEN的初衷很簡單，就是為了打破dayone限制，讓其能夠HTML化、部署到部落格上的工具。
+
+btw：Ryu是我玩街霸時最愛用的角色，因此HADOUKEN的默認主題名也取叫Ryu。與此同時，在主題目錄下還有另外一個空目錄，它叫做「Ken」。（笑）
 
 還搞不明白HADOUKEN為何物？沒關係，見下圖。
 ![HADOUKEN](https://raw.githubusercontent.com/SolidZORO/HADOUKEN/master/HADOUKEN.jpg)
@@ -26,10 +34,14 @@ node run.js
 下一個版本預計添加
 ------------
 * 自動一鍵生成git更新。
+* dayone for iOS 現版本新加入了運動和收藏，如果選了，json會不對，有時間了要debug一下。
 
 
 版本日誌
 ------------
+v0.6 2014-12-10 20:19
+* 加入分頁功能
+
 v0.5 2014-12-08 17:20
 
 * 首頁文章截斷（不再顯示超長了）

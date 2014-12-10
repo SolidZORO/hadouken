@@ -1,3 +1,10 @@
+/*
+ HADOUKEN是一個用nodejs寫的dayone日誌轉換工具，用於把dayone的日誌處理成html。
+ SolidZORO 2014-12-10 19:53:13
+*/
+
+
+
 // 引用組件
 var fs = require("fs");
 var sugar = require('fs-sugar');
@@ -10,48 +17,44 @@ var md = require("node-markdown").Markdown;
 
 
 
+/////////////////////////////////////////////////////////////
 // 參數
-// =========================================
-// 主題
-var SET_THEME = 'ryu';
-// OSX系統用戶名
-var SET_USERNAME = 'SolidZORO';
-// 縮略圖大小（自定義）
-var SET_BANNER_THUMB_SIZE = '480';
-// 几篇日志翻一页？
-var SET_PAGE_NUM = 5;
+// 站點名
+var CONFIG = {
+    // 主題
+    THEME: 'ryu',
+    // OSX系統用戶名
+    USERNAME: 'SolidZORO',
+    // 縮略圖大小（自定義）
+    BANNER_THUMB_SIZE: '480',
+    // 几篇日志翻一页？
+    PAGE_NUM: 2,
+    // 站點名稱
+    SITE_NAME: 'SolidZORO的部落格',
+    // 站點說明
+    SITE_DESC: 'Yuki的黑魔法師。',
 
+    ATTACHMENT: 'attachment',
+    BANNER_ORIGIN: 'origin',
+    BANNER_THUMB: 'thumb',
 
+    DAY: 'day',
+    TAG: 'tag',
+    PAGE: 'p'
+}
 
+var PATH = {
+    ATTACHMENT: './' + CONFIG.ATTACHMENT + '/',
+    BANNER_ORIGIN: './' + CONFIG.ATTACHMENT + '/' + CONFIG.BANNER_ORIGIN + '/',
+    BANNER_THUMB: './' + CONFIG.ATTACHMENT + '/' + CONFIG.BANNER_THUMB + '/',
+    BANNER_THUMB_SIZE: './' + CONFIG.ATTACHMENT + '/' + CONFIG.BANNER_THUMB + '/' + CONFIG.BANNER_THUMB_SIZE + '/',
 
-// #常量
-// =========================================
-// 目錄名
-var DIRNAME_ATTACHMENT = 'attachment';
-var DIRNAME_BANNER_ORIGIN = 'origin';
-var DIRNAME_BANNER_THUMB = 'thumb';
-var DIRNAME_DAY = 'day';
-var DIRNAME_TAG = 'tag';
-var DIRNAME_PAGE = 'p';
-
-// 附件目錄路徑
-var DIR_ATTACHMENT = './' + DIRNAME_ATTACHMENT + '/';
-var DIR_BANNER_ORIGIN = './' + DIRNAME_ATTACHMENT + '/' + DIRNAME_BANNER_ORIGIN + '/';
-var DIR_BANNER_THUMB = './' + DIRNAME_ATTACHMENT + '/' + DIRNAME_BANNER_THUMB + '/';
-var DIR_BANNER_THUMB_SIZE = './' + DIRNAME_ATTACHMENT + '/' + DIRNAME_BANNER_THUMB + '/' + SET_BANNER_THUMB_SIZE + '/';
-
-// 文件目錄路徑
-var DIR_DAY = './' + DIRNAME_DAY + '/';
-var DIR_TAG = './' + DIRNAME_TAG + '/';
-var DIR_PAGE = './' + DIRNAME_PAGE + '/';
-
-
-// dayone源文件路徑
-var DIR_DAYONE_ENTRIES = '/Users/' + SET_USERNAME + '/Library/Mobile\ Documents/5U8NS4GX82\~com\~dayoneapp\~dayone/Documents/Journal_dayone/entries/';
-// var DIR_DAYONE_ENTRIES = './test/';
-var DIR_DAYONE_PHOTOS = '/Users/' + SET_USERNAME + '/Library/Mobile\ Documents/5U8NS4GX82\~com\~dayoneapp\~dayone/Documents/Journal_dayone/photos/';
-
-
+    DAY: './' + CONFIG.DAY + '/',
+    TAG: './' + CONFIG.TAG + '/',
+    PAGE: './' + CONFIG.PAGE + '/',
+    DAYONE_ENTRIES: '/Users/' + CONFIG.USERNAME + '/Library/Mobile\ Documents/5U8NS4GX82\~com\~dayoneapp\~dayone/Documents/Journal_dayone/entries/',
+    DAYONE_PHOTOS: '/Users/' + CONFIG.USERNAME + '/Library/Mobile\ Documents/5U8NS4GX82\~com\~dayoneapp\~dayone/Documents/Journal_dayone/photos/'
+}
 
 
 
@@ -59,8 +62,8 @@ var DIR_DAYONE_PHOTOS = '/Users/' + SET_USERNAME + '/Library/Mobile\ Documents/5
 
 
 
+/////////////////////////////////////////////////////////////
 // #變量
-// =========================================
 // [數組] 所有日誌，entries實在不好拼，所以取簡單一點的day好了，而且我去掉了複數。
 var all_day = [];
 
@@ -78,8 +81,8 @@ var tag_collection = [];
 
 
 
+/////////////////////////////////////////////////////////////
 // #函數
-// =========================================
 // 判斷字符是否已在數組中 S
 function in_array(needle, haystack, argStrict) {
     var key = '',
@@ -106,77 +109,97 @@ function in_array(needle, haystack, argStrict) {
 
 
 // 檢查路徑
-// console.log(DIR_ATTACHMENT);
-// console.log(DIR_BANNER_ORIGIN);
-// console.log(DIR_BANNER_THUMB);
-// console.log(DIR_BANNER_THUMB_SIZE);
-// console.log(DIR_DAY);
-// console.log(DIR_TAG);
-// console.log(DIR_PAGE);
-// console.log(DIR_DAYONE_ENTRIES);
-// console.log(DIR_DAYONE_PHOTOS);
+// console.log(CONFIG.ATTACHMENT);
+// console.log(CONFIG.BANNER_ORIGIN);
+// console.log(CONFIG.BANNER_THUMB);
+// console.log(CONFIG.BANNER_THUMB_SIZE);
+// console.log(CONFIG.DAY);
+// console.log(CONFIG.TAG);
+// console.log(CONFIG.PAGE);
+// console.log('--------------------------');
+// console.log(PATH.ATTACHMENT);
+// console.log(PATH.BANNER_ORIGIN);
+// console.log(PATH.BANNER_THUMB);
+// console.log(PATH.BANNER_THUMB_SIZE);
+// console.log(PATH.DAY);
+// console.log(PATH.TAG);
+// console.log(PATH.PAGE);
+// console.log(PATH.DAYONE_ENTRIES);
+// console.log(PATH.DAYONE_PHOTOS);
 
-
+/////////////////////////////////////////////////////////////
 // 如果dayone日誌目錄存在，才開始運行。
-if (fs.existsSync(DIR_DAYONE_ENTRIES)) {
+/////////////////////////////////////////////////////////////
+if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
 
+
+
+    /////////////////////////////////////////////////////////////
     // 清除文件夾
+    /////////////////////////////////////////////////////////////
     // 日誌詳細頁
-    if (fs.existsSync(DIR_DAY)) {
-        sugar.rmrDirSync(DIR_DAY);
+    if (fs.existsSync(PATH.DAY)) {
+        sugar.rmrDirSync(PATH.DAY);
     }
     // 日誌Tag
-    if (fs.existsSync(DIR_TAG)) {
-        sugar.rmrDirSync(DIR_TAG);
+    if (fs.existsSync(PATH.TAG)) {
+        sugar.rmrDirSync(PATH.TAG);
     }
     // 日誌頁數
-    if (fs.existsSync(DIR_PAGE)) {
-        sugar.rmrDirSync(DIR_PAGE);
+    if (fs.existsSync(PATH.PAGE)) {
+        sugar.rmrDirSync(PATH.PAGE);
     }
     // 原圖
-    if (fs.existsSync(DIR_BANNER_ORIGIN)) {
-        sugar.rmrDirSync(DIR_BANNER_ORIGIN);
+    if (fs.existsSync(PATH.BANNER_ORIGIN)) {
+        sugar.rmrDirSync(PATH.BANNER_ORIGIN);
     }
     // 縮略圖（以及各種尺寸縮略圖一起清了）
-    if (fs.existsSync(DIR_BANNER_THUMB)) {
-        sugar.rmrDirSync(DIR_BANNER_THUMB);
+    if (fs.existsSync(PATH.BANNER_THUMB)) {
+        sugar.rmrDirSync(PATH.BANNER_THUMB);
     }
 
 
+    /////////////////////////////////////////////////////////////
     // 創建文件夾
+    /////////////////////////////////////////////////////////////
     // 日誌詳細頁
-    if (!fs.existsSync(DIR_DAY)) {
-        fs.mkdirSync(DIR_DAY);
+    if (!fs.existsSync(PATH.DAY)) {
+        fs.mkdirSync(PATH.DAY);
     }
     // 日誌Tag
-    if (!fs.existsSync(DIR_TAG)) {
-        fs.mkdirSync(DIR_TAG);
+    if (!fs.existsSync(PATH.TAG)) {
+        fs.mkdirSync(PATH.TAG);
     }
     // 日誌頁數
-    if (!fs.existsSync(DIR_PAGE)) {
-        fs.mkdirSync(DIR_PAGE);
+    if (!fs.existsSync(PATH.PAGE)) {
+        fs.mkdirSync(PATH.PAGE);
+    }
+    // 附件目錄
+    if (!fs.existsSync(PATH.ATTACHMENT)) {
+        fs.mkdirSync(PATH.ATTACHMENT);
     }
     // 原圖
-    if (!fs.existsSync(DIR_BANNER_ORIGIN)) {
-        fs.mkdirSync(DIR_BANNER_ORIGIN);
+    if (!fs.existsSync(PATH.BANNER_ORIGIN)) {
+        fs.mkdirSync(PATH.BANNER_ORIGIN);
     }
     // 如果dayone目錄存在圖片，就拷到origin目錄裡。
-    if (fs.existsSync(DIR_DAYONE_PHOTOS)) {
-        sugar.copyDirSync(DIR_DAYONE_PHOTOS, DIR_BANNER_ORIGIN);
+    if (fs.existsSync(PATH.DAYONE_PHOTOS)) {
+        sugar.copyDirSync(PATH.DAYONE_PHOTOS, PATH.BANNER_ORIGIN);
     }
     // 縮略圖
-    if (!fs.existsSync(DIR_BANNER_THUMB)) {
-        fs.mkdirSync(DIR_BANNER_THUMB);
+    if (!fs.existsSync(PATH.BANNER_THUMB)) {
+        fs.mkdirSync(PATH.BANNER_THUMB);
     }
     // 縮略圖（帶有自定義尺寸的）
-    if (!fs.existsSync(DIR_BANNER_THUMB_SIZE)) {
-        fs.mkdirSync(DIR_BANNER_THUMB_SIZE);
+    if (!fs.existsSync(PATH.BANNER_THUMB_SIZE)) {
+        fs.mkdirSync(PATH.BANNER_THUMB_SIZE);
     }
 
-
+    /////////////////////////////////////////////////////////////
     // 遍歷dayone日誌 S
     // readdirSync裡的i計數器其實沒有用到，因為我初始化了 all_day_length。
-    fs.readdirSync(DIR_DAYONE_ENTRIES).forEach(function (file, i) {
+    /////////////////////////////////////////////////////////////
+    fs.readdirSync(PATH.DAYONE_ENTRIES).forEach(function (file, i) {
 
         // 過濾.doentry後綴的文件
         var regex_dayone = /\.doentry/;
@@ -194,7 +217,7 @@ if (fs.existsSync(DIR_DAYONE_ENTRIES)) {
 
 
             // 讀取dayone的日誌文件（其實就是xml）
-            var day_xml = fs.readFileSync(DIR_DAYONE_ENTRIES + file, 'utf-8');
+            var day_xml = fs.readFileSync(PATH.DAYONE_ENTRIES + file, 'utf-8');
 
             // 處理日誌，簡直就是浩大的工程！ S
             parseString(day_xml, function (err, day_json) {
@@ -278,7 +301,7 @@ if (fs.existsSync(DIR_DAYONE_ENTRIES)) {
 
 
                         // 拼接日誌配圖路徑（都是jpg的，如果不是jpg，dayone也會轉成jpg）
-                        day.source_banner = DIR_BANNER_ORIGIN + day.id + '.jpg';
+                        day.source_banner = PATH.BANNER_ORIGIN + day.id + '.jpg';
 
                         // 如果找到日誌配圖圖片，就賦值並壓縮小圖 S
                         if (fs.existsSync(day.source_banner)) {
@@ -287,14 +310,14 @@ if (fs.existsSync(DIR_DAYONE_ENTRIES)) {
                             day.banner_origin = day.source_banner;
 
                             // 壓縮成指定大小的圖片
-                            gm(day.banner_origin).resize(SET_BANNER_THUMB_SIZE).write(DIR_BANNER_THUMB_SIZE + day.id + '.jpg', function (err) {
+                            gm(day.banner_origin).resize(CONFIG.BANNER_THUMB_SIZE).write(PATH.BANNER_THUMB_SIZE + day.id + '.jpg', function (err) {
                                 if (err) {
                                     return console.dir(arguments);
                                 }
                             });
 
                             // 縮略圖
-                            day.banner_thumb = DIR_BANNER_THUMB_SIZE + day.id + '.jpg';
+                            day.banner_thumb = PATH.BANNER_THUMB_SIZE + day.id + '.jpg';
 
                         };
                         // 如果找到日誌配圖圖片，就賦值並壓縮小圖 E
@@ -342,15 +365,14 @@ if (fs.existsSync(DIR_DAYONE_ENTRIES)) {
     // 遍歷dayone日誌 E
 
 
-    // console.log(all_day);
 
 
 
 
 
-
-
+    /////////////////////////////////////////////////////////////
     // 按發布日期倒序日誌排列。
+    /////////////////////////////////////////////////////////////
     all_day = all_day.slice(0);
     all_day.sort(function (a, b) {
         return b.timestamp - a.timestamp;
@@ -360,34 +382,46 @@ if (fs.existsSync(DIR_DAYONE_ENTRIES)) {
 
 
 
-    // 分頁計數器
-    var totle_page_num_temp1 = 11 % SET_PAGE_NUM;
-    var totle_page_num_temp2 = 11 / SET_PAGE_NUM;
-    // var jade_pagination = jade.compileFile('./themes/' + SET_THEME + '/pagination.jade');
+    /////////////////////////////////////////////////////////////
+    // 通用分頁計數器
+    /////////////////////////////////////////////////////////////
+    // 對日誌總數取餘
+    var totle_page_num_temp1 = all_day_length % CONFIG.PAGE_NUM;
+    // 計算日誌的頁數
+    var totle_page_num_temp2 = all_day_length / CONFIG.PAGE_NUM;
 
+    // 如果 日誌總數/每頁日誌數==0（比如15%5，剛好除盡，就給3頁）
     if (totle_page_num_temp1 == 0) {
         var totle_page_num = totle_page_num_temp2;
     } else {
-        var totle_page_num = (Math.floor(totle_page_num_temp2)) + 1;
+        var totle_page_num = (parseInt(totle_page_num_temp2)) + 1;
     };
 
 
 
-    // SET_PAGE_NUM
 
+
+
+
+
+
+    /////////////////////////////////////////////////////////////
     // 首頁渲染並寫入 S
+    /////////////////////////////////////////////////////////////
     var all_day_index = [];
-    for (var i = 0; i < SET_PAGE_NUM; i++) {
+    for (var i = 0; i < CONFIG.PAGE_NUM; i++) {
         all_day_index.push(all_day[i]);
     }
-    var jade_index = jade.compileFile('./themes/' + SET_THEME + '/index.jade');
-    var html_index = jade_index({
+    var jade_index = jade.compileFile('./themes/' + CONFIG.THEME + '/index.jade');
+    var html_data = jade_index({
         HOME_PATH: './',
-        all_day_index: all_day_index,
+        CONFIG: CONFIG,
+        PATH: PATH,
         totle_page_num: totle_page_num,
-        current_page_num: 1
+        current_page_num: 1,
+        datas: all_day_index
     });
-    fs.writeFileSync('index.html', html_index);
+    fs.writeFileSync('index.html', html_data);
     // 首頁渲染並寫入 E
 
 
@@ -395,57 +429,27 @@ if (fs.existsSync(DIR_DAYONE_ENTRIES)) {
 
 
 
-
-    // 首頁分頁染並寫入 S
-    // [數組] 存放Page頁
-    var one_page = [];
-    var jade_page = jade.compileFile('./themes/' + SET_THEME + '/page.jade');
-
-    for (var i = 0, p = 0; i < all_day_length; i += SET_PAGE_NUM) {
-
-        one_page.push(all_day.slice(i, i + SET_PAGE_NUM));
-        var html_tag = jade_page({
-            HOME_PATH: '../',
-            one_page: one_page[p],
-            totle_page_num: totle_page_num,
-            current_page_num: (p + 1)
-
-        });
-
-        // 判斷page目錄是否存在
-        if (!fs.existsSync(DIR_PAGE)) {
-            fs.mkdirSync(DIR_PAGE);
-        }
-        fs.writeFileSync(DIR_PAGE + '/' + (p + 1) + '.html', html_tag);
-
-        p++;
-    }
-    // 首頁分頁染並寫入 E
-
-
-
-
-
-
-
-
-
+    /////////////////////////////////////////////////////////////
     // 單篇日誌渲染並寫入 S
-    var jade_day = jade.compileFile('./themes/' + SET_THEME + '/day.jade');
+    /////////////////////////////////////////////////////////////
+    var jade_day = jade.compileFile('./themes/' + CONFIG.THEME + '/day.jade');
 
     // 遍歷日誌數量
     for (var i = 0; i < all_day_length; i++) {
 
         // jade模板賦值
-        var html_entrie = jade_day({
+        var html_data = jade_day({
             HOME_PATH: '../',
-            day: all_day[i]
+            CONFIG: CONFIG,
+            PATH: PATH,
+            title: all_day[i].title,
+            data: all_day[i]
         });
 
-        if (!fs.existsSync(DIR_DAY)) {
-            fs.mkdirSync(DIR_DAY);
+        if (!fs.existsSync(PATH.DAY)) {
+            fs.mkdirSync(PATH.DAY);
         }
-        fs.writeFileSync(DIR_DAY + all_day[i].url + '.html', html_entrie);
+        fs.writeFileSync(PATH.DAY + all_day[i].url + '.html', html_data);
 
     }
     // 單篇日誌渲染並寫入 E
@@ -455,9 +459,47 @@ if (fs.existsSync(DIR_DAYONE_ENTRIES)) {
 
 
 
-    // 單個tag渲染並寫入 S
-    var jade_tag = jade.compileFile('./themes/' + SET_THEME + '/tag.jade');
 
+    /////////////////////////////////////////////////////////////
+    // 日誌分頁染並寫入 S
+    /////////////////////////////////////////////////////////////
+    // [數組] 存放Page頁
+    var one_page = [];
+    var jade_page = jade.compileFile('./themes/' + CONFIG.THEME + '/page.jade');
+
+    for (var i = 0, p = 0; i < all_day_length; i += CONFIG.PAGE_NUM) {
+
+        one_page.push(all_day.slice(i, i + CONFIG.PAGE_NUM));
+        var html_data = jade_page({
+            HOME_PATH: '../',
+            CONFIG: CONFIG,
+            PATH: PATH,
+            totle_page_num: totle_page_num,
+            current_page_num: (p + 1),
+            title: '第' + (p + 1) + '頁',
+            datas: one_page[p]
+
+        });
+
+        // 判斷page目錄是否存在
+        if (!fs.existsSync(PATH.PAGE)) {
+            fs.mkdirSync(PATH.PAGE);
+        }
+        fs.writeFileSync(PATH.PAGE + '/' + (p + 1) + '.html', html_data);
+        p++;
+    }
+    // 日誌分頁染並寫入 E
+
+
+
+
+
+
+
+    /////////////////////////////////////////////////////////////
+    // 單個tag渲染並寫入 S
+    /////////////////////////////////////////////////////////////
+    var jade_tag = jade.compileFile('./themes/' + CONFIG.THEME + '/tag.jade');
     // 遍歷tag
     for (var t = 0; t < all_tag.length; t++) {
 
@@ -476,21 +518,30 @@ if (fs.existsSync(DIR_DAYONE_ENTRIES)) {
         }
 
         // jade模板賦值
-        var html_tag = jade_tag({
+        var html_data = jade_tag({
             HOME_PATH: '../',
+            CONFIG: CONFIG,
+            PATH: PATH,
             title: all_tag[t],
-            tags: tag_collection[t]
+            datas: tag_collection[t]
         });
 
         // console.log(tag_collection);
 
-        if (!fs.existsSync(DIR_TAG)) {
-            fs.mkdirSync(DIR_TAG);
+        if (!fs.existsSync(PATH.TAG)) {
+            fs.mkdirSync(PATH.TAG);
         }
-        fs.writeFileSync(DIR_TAG + all_tag[t] + '.html', html_tag);
+        fs.writeFileSync(PATH.TAG + all_tag[t] + '.html', html_data);
 
     }
     // 單個tag渲染並寫入 E
-    console.log("所有日誌轉換完畢，共" + all_day_length + "篇。");
+
+
+
+
+    /////////////////////////////////////////////////////////////
+    // 完畢提示
+    /////////////////////////////////////////////////////////////
+    console.log('\n全部日誌轉換完畢。\n共' + all_day_length + '篇，分' + totle_page_num + '頁輸出。');
 
 }

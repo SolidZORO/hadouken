@@ -1,68 +1,24 @@
-<!DOCTYPE html><html lang="zh"><head><title>SolidZORO</title><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="renderer" content="webkit"><meta name="description" content=""><link rel="stylesheet" href="../themes/ryu/assets/css/style.css"><script src="../themes/ryu/assets/js/app.js"></script></head><body class="katana"><div class="saya-header"><div class="saya"><div class="logo"><a href="../index.html" title="SolidZORO" alt="SolidZORO">首頁</a></div><div class="nav"><ul><li><a href="#">關於</a></li><li><a href="#">專案</a></li></ul></div></div></div><div class="saya-container"><div class="saya"><div class="list"><div class="item"><h2 class="title"><a href="../undefined/2014-09-22-134627.html">angularJS雙向綁定的應用場景</a></h2><div class="date">2014年 09月 22日</div><div class="typo"><p>用angularJS（下文簡稱ng）的時間加起來沒超過一天，但的的確確能感覺這是一個值得一試的框架。之前只是想學一下這個新奇的東西，但是在嘗試過後，決定用ng從寫公司CMS的後臺（原爲backboneJS）。</p>
+<!DOCTYPE html><html lang="zh"><head><title>第3頁 - SolidZORO的部落格</title><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="renderer" content="webkit"><meta name="description" content=""><link rel="stylesheet" href="../themes/ryu/assets/css/style.css"><script src="../themes/ryu/assets/js/app.js"></script></head><body class="katana"><div class="saya-header"><div class="saya"><div class="logo"><a href="../index.html" title="SolidZORO" alt="SolidZORO">首頁</a></div><div class="nav"><ul><li><a href="#">關於</a></li><li><a href="#">專案</a></li></ul></div></div></div><div class="saya-container"><div class="saya"><div class="list"><div class="item"><h2 class="title"><a href=".././p/2014-11-29-120229.html">調適麻煩的nodejs</a></h2><div class="date">2014年 11月 29日</div><div class="typo"><p>昨天因為想要用nodejs寫一個dayone日誌生成html的工具，弄了很久，不得要領，真是難過，而且奇怪的debug方式及其麻煩，簡直是欺負我這種既沒Javascript基礎且又是初次接觸nodejs的人。</p>
 
-<p>案例1：雙向綁定帶來了極大的便利
-剛看ng的時候，我實在搞不懂這個雙向綁定到底是什麼，感覺只是在一個地方輸入文字，其他地方跟着變化而已。想不到什麼應用場景，但是在移植後臺編輯器這塊的時候讓我頗爲驚喜。</p>
+<p>而且之前我還想用gulp寫的，但後來發現gulp是個大坑，而且功能遠沒nodejs那麼豐富靈活，所以才決定用nodejs來寫。</p>
 
-<p>需求是這樣的：
-後臺編輯器有3個，可以來回切換，分別是</p>
+<p>寫了幾個小時，實在寫不下去了，最後搞得連覺都沒睡好，真是自找麻煩。</p></div></div><div class="item"><h2 class="title"><a href=".././p/2014-11-25-145538.html">小朋友的遊戲</a></h2><div class="date">2014年 11月 25日</div><div class="typo"><div class="banner-thumb"><img src=".././attachment/thumb/480/951B0368AF0F4F26A22184FFDD779965.jpg"></div><p>今天晚上回家吃完飯，忽然感覺應該教女兒yuki一些知識，但是教什麼呢？繪本已經都看過了，塗鴉遊戲也已玩膩了。</p>
 
-<ul>
-<li>ace（代碼高亮，debug的時候用）</li>
-<li>tinymce（可視化，給不懂HTML的用戶使用）</li>
-<li>text（純文本，手機上用）。</li>
-</ul>
+<p>然後隨手打開Appstore，忽然看到以前購入的遊戲「body」被打上 (RED)的公益標示在推廣，這個遊戲當時玩就覺得蠻好的，很多知識點，大體上是一個在講人體骨骼與各器官運作機制的教科書類遊戲。</p>
 
-<p>在用backbone開發的時候，切換3個編輯器非常頭疼，或者說，從2個編輯器變到3個的時候非常頭疼，因爲backbnone沒有雙向綁定，我們可以做的事情就是先找一個textarea出來，作爲緩衝層。</p>
+<p>我覺得這個蠻適合用來教小朋友的，就開始玩起來。講到鼻子與眼睛的時候感覺Yuki特別的有在認真聽。因為眼睛章節透過ipad前置攝像頭可以模擬真實的視覺效果，像是ipad長了眼睛在看我們。</p>
 
-<p>什麼時候用戶點擊了切換按鈕，再用賦值的方式把緩衝層的代碼copy到切換的編輯器中，如果用戶切換了別的編輯器，那就再重複做這個事件。巨麻煩巨坑，以至於爲了理清這些編輯器的切換邏輯我們就花了兩天。</p>
+<p>然後是鼻子關卡，在這裏可以拖拽各種食物和花草，讓鼻子的神經被刺激到，以傳導與大道的神經上，而這一切都是所見即所得，比小時候上生物課來得有趣得多。</p>
 
-<p>本以爲用ng移植這個編輯器也會變得很複雜，結果前幾天用ng重寫的時候，非常順，幾行代碼就完成了，把編輯器都綁一個ng-model，初始化的時候只顯示一個，別的先隱藏，點擊切換的時候其實只是在做隱藏和顯示的切換，這就是一切了！</p>
+<p>最重要的是遊戲裏還有一個語音錄製功能，即長按開始錄音，鬆開手結束，然後被按的地方會出現一個錄音圖標，小朋友之後可以很方便的聆聽這種「爸比的聲音」，重複點擊會自動觸發隱藏的「爸比是復讀機」特效（誤）。</p>
 
-<p>巨簡單，巨省心，完全不用做什麼額外的工作就全都好了，結合ui-bootstrap的切換tab組件，5分鐘完成妥妥的，真讓我不敢相信，太tmd神奇了。</p>
+<p>我覺得開發商開發出這個功能真是有夠精妙的，它們很好的用這個功能擴充了遊戲的教育性，一切奇思妙想都交由父母自己來完成，這種讓用家二次擴展創作的遊戲的確不是很多見，絕讚到不行。</p>
 
-<p>另外，現在ng的週邊組件還不多，但這並不影響用ng做商用開發，我覺得ng自帶的一些特性完全可以滿足「不是特別複雜」的後臺開發了。</p>
-
-<p>不過，對於網站前臺開發可能還需要再等等，1.3版本不支持IE8的確是個硬傷，如果是Mobile開發可以大膽使用，另外ng這種方式對SEO還是非常不利的，不曉得今後會有什麼對策出來解決這個問題。</p></div></div><div class="item"><h2 class="title"><a href="../undefined/2014-09-22-134338.html">週一零點（九月第三週）被風吹過的伏特加</a></h2><div class="date">2014年 09月 22日</div><div class="typo"><p>週一凌晨5點，半杯Absolute伏特加。</p>
-
-<p>其實婚後的時間很瑣碎，除了陪小朋友之外就是工作。所以，很難抽身寫點什麼，有時候即便有時間，也未必能對上思緒，深入想一些問題。</p>
-
-<p>一年前，我總是加班，總是在下班的時候把筆記本背回家，總想在家的時候能延續工作或和工作有關的事情。</p>
-
-<p>最近幾個月，我選擇了按時下班，除了用耳塞塞住耳朵外，別的什麼都不帶，下意識的在下班之後離開可以上網的設備，包括手機。</p>
-
-<p>有一天早上，大概是1個星期前，在我某個路口的拐角處，吹到了無比涼快、舒服的風，那一刻讓我覺得活着的確還是有一些東西會給自己帶來喜悅，或者說這些小小的驚喜會讓自己感覺是在活着。</p>
-
-<p>「活着」這個詞彙或許在很多人眼中是個被忽略的存在事物，但是對我來說，越長大越容易忽略自己是在活着已然是存在已久的事實，每天做着大量且稍顯重複的工作讓自己內心變得麻木起來，變得沒有危機意識，變得沒有喜怒哀樂。</p>
-
-<p>很多次我問自己，自己的興趣、愛好、追求都跑哪裏去了，以前我還會對想要的事物，想暸解的事情抱有期待和探索，現在卻變得什麼都沒有，空，虛無。但從另一個層次上來說，又好像自己不需要去獲得去探索，因爲自己都有了，都懂了，沒有什麼事情值得自己去挑戰了。</p>
-
-<p>那……其實這個時候我覺得我是停下來了。停在了自我滿足的原地中，但是情況又不是這樣的，因爲我每天都有在做新功課，新功課很可能一天就完成了，做一件複雜的事情，很可能現學現用一個小時就理清楚了，我有時候想定一個大一點的目標，但是應爲瑣碎的時間，沒能長久的延續下去，又或者我的完美主義讓事情進度變得很緩慢，久而久之就變停下來了。</p>
-
-<p>很可能，我回頭看這個的時候，我都不知道自己在說什麼，很多時候，這種手寫心的日誌僅僅只是日誌，倘若不寫，那會變得什麼都沒有，只好通過這種方式不斷挖一下自己，看看到底有什麼地方不對勁，好加以修正。</p>
-
-<p>那麼，就定點每週一凌晨吧，日誌歸檔爲「週一零點」。下次要有一個話題才行。</p></div></div><div class="item"><h2 class="title"><a href="../undefined/2014-08-24-133550.html">互聯網初創團隊都會遇到的那些問題 </a></h2><div class="date">2014年 08月 24日</div><div class="typo"><div class="banner-thumb"><img src=".././attachment/thumb/480/4D4E8BAEDB91404E83A62C4E9094FA70.jpg"></div><p>image by alistapart.com</p>
-
-<p>也許是因爲豌豆莢最近在深圳成立了分部，所以有了這次公開課，主講是丁吉昌先生，網上查了一下他是豌豆莢初創時期的人員，我對他暸解不多，但這似乎並不妨礙我寫這篇分享文，這篇文章主要想對號入座談談自己團隊這幾年遇到的一些問題，以及……給我這個github blog開荒（捂臉）。</p>
-
-<p>那麼，丁先生講了什麼呢？回顧一下：</p>
+<p>玩了一大圈，最後跳到主介面不小心點到About頁，看到了這家公司的其他兩個遊戲：</p>
 
 <ul>
-<li>豌豆莢的公司文化</li>
-<li>數據驗證（注意，不是數據驅動）</li>
-<li>軟件開發迭代</li>
-<li>團隊協同工具</li>
-<li>一句話概括 產品／項目（原文大概是 Product/Project Brief）</li>
-<li>OKR</li>
+<li><strong>Homes</strong> （介紹世界各地房屋）</li>
+<li><strong>Plants</strong> （介紹大自然中的植物）</li>
 </ul>
 
-<p>（……抱歉，我的記憶總是不靠譜，肯定還有什麼被遺漏了，但沒有辦法，權當只有我記得的這些吧）</p>
-
-<p><a href="./day/2014-08-24-133550.html">閱讀全文</a></p></div></div><div class="item"><h2 class="title"><a href="../undefined/2014-07-12-045529.html">孩子</a></h2><div class="date">2014年 07月 12日</div><div class="typo"><div class="banner-thumb"><img src=".././attachment/thumb/480/87353C10569F4E53BD92BD03692A9031.jpg"></div><p>孩子是一種很可憐的物件，我們每個人都曾是孩子，所以誕生在這個世界上的每一個人都是可憐，所謂的喜悅只不過是在這種焦灼痛苦的環境裏嚐到的一點點甜頭而已。</p>
-
-<p>關於孩子，我很早就像要提筆寫點什麼了，但是應爲惰性想着以後回憶起來再寫，但，記憶總是不靠譜的，要提取的時候總是要漏掉一部分。所以現在的感觸與衝擊與當時想比，肯定是淡了。</p>
-
-<p>首先，作爲孩子父親，我是愛她的，只不過很可能愛得不是那麼明顯或者方式有些特別，直到現在爲止，她都沒有真心說過愛我，更多的是另3個字「不喜歡」。</p>
-
-<p>「一定不可以麻煩別人。」這是我對她說得最多的一句話，也是唯一一句。哭是會打擾到別人的，在安靜的地方笑出聲會給人添麻煩，在公交上唱歌自然也是不行的，只要是會麻煩到別人的事情都是不可以做的。每次我對她發火肯定是應爲她麻煩到別人了。</p>
-
-<p>很自然的，因爲這句話，產生了一系列的化學反映。比如，沒有按時吃飯，那我吃完飯了就把碗筷收好。</p></div></div><div class="item"><h2 class="title"><a href="../undefined/2014-07-01-163022.html">想做個podcast，還沒找到適合的人，也沒有好話題。</a></h2><div class="date">2014年 07月 01日</div><div class="typo"><p>這篇日誌沒有內容。</p></div></div></div><div class="pagination"><a href="../p/1.html" class="normal"><span>1</span></a><a href="../p/2.html" class="normal"><span>2</span></a><a href="../p/3.html" class="current"><strong>3</strong></a></div></div></div><div class="saya-footer"><div class="saya"><div class="copyright">© 2014&nbsp;<a href="http://solidzoro.com" target="_blank">SOLIDZORO</a>&nbsp;BY&nbsp;<a href="https://github.com/SolidZORO/HADOUKEN" target="_blank">HADOUKEN</a></div></div></div></body></html>
+<p>這些都是極具教學意義的好遊戲，不單可以買來教小朋友一些知識，就是自己學學也不錯，因為我想應該所有人都想知道耳朵為什麼能聽到聲音，又或者樹根地下到底藏著什麼。對不對？</p></div></div></div><div class="pagination"><a href="../p/1.html" class="normal"><span>1</span></a><a href="../p/2.html" class="normal"><span>2</span></a><a href="../p/3.html" class="current"><strong>3</strong></a><a href="../p/4.html" class="normal"><span>4</span></a><a href="../p/5.html" class="normal"><span>5</span></a><a href="../p/6.html" class="normal"><span>6</span></a><a href="../p/7.html" class="normal"><span>7</span></a><a href="../p/8.html" class="normal"><span>8</span></a><a href="../p/9.html" class="normal"><span>9</span></a></div></div></div><div class="saya-footer"><div class="saya"><div class="copyright">© 2014&nbsp;<a href="http://solidzoro.com" target="_blank">SOLIDZORO</a>&nbsp;BY&nbsp;<a href="https://github.com/SolidZORO/HADOUKEN" target="_blank">HADOUKEN</a></div></div></div></body></html>

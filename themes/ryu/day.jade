@@ -1,34 +1,34 @@
 extends ./layout/default
 
 block title
-    title #{day.title} - SolidZORO
+    title #{title} - #{CONFIG.SITE_NAME}
 
 block container
     .saya-container
         .saya
             .detaile
                 .item
-                    h1.title #{day.title}
-                    .date #{day.data_zh}
+                    h1.title #{data.title}
+                    .date #{data.data_zh}
                     .typo
-                        - if (day.banner)
+                        - if (data.banner)
                             .banner
-                                img(src= HOME_PATH + day.banner)
-                        |!{day.content_html}
+                                img(src= HOME_PATH + data.banner)
+                        |!{data.content_html}
 
-                    - if (day.tags)
+                    - if (data.tags)
                         .tags
                             span 標籤：
-                            each tag in day.tags
-                                a(href= HOME_PATH + DIRNAME_TAG + '/'+ tag + '.html') #{tag}
+                            each tag in data.tags
+                                a(href= HOME_PATH + PATH.TAG + tag + '.html') #{tag}
 
 
 
                 .item.comment
                     .ds-thread(
-                            data-thread-key="#{day.date}"
-                            data-title="#{day.title}"
-                            data-url="http://solidzoro.com/day/#{day.url}.html"
+                            data-thread-key="#{data.date}"
+                            data-title="#{data.title}"
+                            data-url="http://solidzoro.com/day/#{data.url}.html"
                     )
                     script(type="text/javascript").
                         var duoshuoQuery = {short_name:"zoro"};
