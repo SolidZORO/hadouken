@@ -10,8 +10,8 @@ block container
                 each data in datas
                     .item
                         h2.title
-                            a(href= HOME_PATH + PATH.PAGE + data.url + '.html') #{data.title}
-                        .date #{data.data_zh}
+                            a(href= HOME_PATH + PATH.DAY + data.url + '.html') #{data.title}
+                        .date #{data.date_zh}
 
                         .typo
                             - if (data.banner_thumb)

@@ -8,7 +8,7 @@
 // 引用組件
 var fs = require("fs");
 var sugar = require('fs-sugar');
-var parseString = require('xml2js').parseString;
+var xml2js = require('xml2js').parseString;
 var jade = require('jade');
 var gm = require('gm');
 var md = require("node-markdown").Markdown;
@@ -19,7 +19,7 @@ var md = require("node-markdown").Markdown;
 
 /////////////////////////////////////////////////////////////
 // 參數
-// 站點名
+// 配置
 var CONFIG = {
     // 主題
     THEME: 'ryu',
@@ -45,6 +45,7 @@ var CONFIG = {
     PAGE: 'p'
 }
 
+// 路徑
 var PATH = {
     ATTACHMENT: './' + CONFIG.ATTACHMENT + '/',
     BANNER_ORIGIN: './' + CONFIG.ATTACHMENT + '/' + CONFIG.BANNER_ORIGIN + '/',
@@ -57,6 +58,10 @@ var PATH = {
     DAYONE_ENTRIES: '/Users/' + CONFIG.USERNAME + '/Library/Mobile\ Documents/5U8NS4GX82\~com\~dayoneapp\~dayone/Documents/Journal_dayone/entries/',
     DAYONE_PHOTOS: '/Users/' + CONFIG.USERNAME + '/Library/Mobile\ Documents/5U8NS4GX82\~com\~dayoneapp\~dayone/Documents/Journal_dayone/photos/'
 }
+
+// dayone的新功能，會用陀螺儀自動獲取你的狀態，如果拿著手機跑，就是Running，這條信息會插在string數組的最上方。
+// 這就導致了數組排序變化，出現判斷失誤問題。所以要做對比，給沒有狀態的日誌splice加入空狀態。
+var ACTIVITY = ['Stationary', 'Walking', 'Running', 'Biking', 'Easting', 'Automotive', 'Flying', 'Train'];
 
 
 
@@ -207,8 +212,6 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
         var regex_dayone = /\.doentry/;
         var result_dayone = regex_dayone.exec(file);
 
-
-
         // 假如找到了dayone日誌文件，就開始處理它們 S
         if (result_dayone) {
 
@@ -217,47 +220,55 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
             // TODO，如果知道原理的同學可以告訴我一下原理： solidzoro __ icloud __ com
             var day = {};
 
-
             // 讀取dayone的日誌文件（其實就是xml）
             var day_xml = fs.readFileSync(PATH.DAYONE_ENTRIES + file, 'utf-8');
 
             // 處理日誌，簡直就是浩大的工程！ S
-            parseString(day_xml, function (err, day_json) {
+            xml2js(day_xml, function (err, day_json) {
                 if (err) {
                     return 'err';
                 };
 
+                // 狀態，如果日誌沒有狀態，就設定為空''
+                if (!in_array(day_json.plist.dict[0].string[0], ACTIVITY)) {
+                    day_json.plist.dict[0].string.splice(0, 0, '');
+                }
+                day.activity = day_json.plist.dict[0].string[0];
+
+
                 // ID
                 day.id = day_json.plist.dict[0].string[2];
+
 
                 // 日期（原格式為 2014-11-23T15:32:15Z）
                 day.source_date = day_json.plist.dict[0].date[0];
 
+
                 // 處理時間
                 day.source_date = day.source_date.replace(/T/, " ");
                 day.source_date = day.source_date.replace(/Z/, '');
+
                 day.timestamp = new Date(day.source_date);
                 day.timestamp = day.timestamp.getTime() / 1000;
+                day.source_timestamp = new Date(day.timestamp * 1000);
 
-                day.url = new Date(day.timestamp * 1000);
-                var Y = day.url.getFullYear();
-                var M = (day.url.getMonth() + 1) < 10 ? '0' + (day.url.getMonth() + 1) : day.url.getMonth() + 1;
-                var D = day.url.getDate() < 10 ? '0' + day.url.getDate() : day.url.getDate();
-                var h = day.url.getHours() < 10 ? '0' + day.url.getHours() : day.url.getHours();
-                var m = day.url.getMinutes() < 10 ? '0' + day.url.getMinutes() : day.url.getMinutes();
-                var s = day.url.getSeconds() < 10 ? '0' + day.url.getSeconds() : day.url.getSeconds();
+                var day_date_Y = day.source_timestamp.getFullYear();
+                var day_date_M = (day.source_timestamp.getMonth() + 1) < 10 ? '0' + (day.source_timestamp.getMonth() + 1) : day.source_timestamp.getMonth() + 1;
+                var day_date_D = day.source_timestamp.getDate() < 10 ? '0' + day.source_timestamp.getDate() : day.source_timestamp.getDate();
+                var day_date_h = day.source_timestamp.getHours() < 10 ? '0' + day.source_timestamp.getHours() : day.source_timestamp.getHours();
+                var day_date_m = day.source_timestamp.getMinutes() < 10 ? '0' + day.source_timestamp.getMinutes() : day.source_timestamp.getMinutes();
+                var day_date_s = day.source_timestamp.getSeconds() < 10 ? '0' + day.source_timestamp.getSeconds() : day.source_timestamp.getSeconds();
+
+                day.date = day_date_Y + '-' + day_date_M + '-' + day_date_D;
+                day.date_zh = day_date_Y + '年 ' + day_date_M + '月 ' + day_date_D + '日';
 
                 // URL
-                day.url = Y + '-' + M + '-' + D + '-' + h + m + s;
-                day.data = Y + '-' + M + '-' + D;
-                day.data_zh = Y + '年 ' + M + '月 ' + D + '日';
-
-
+                day.url = day_date_Y + '-' + day_date_M + '-' + day_date_D + '-' + day_date_h + day_date_m + day_date_s;
 
 
 
                 // 把只有一個字段的日誌分解成 標題與內容，順便把配圖也找一下 S
-                day.source_title_and_content = day_json.plist.dict[0].string[0];
+                day.source_title_and_content = day_json.plist.dict[0].string[1];
 
                 if (day.source_title_and_content !== '') {
 
@@ -288,7 +299,7 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
                             var result_content_more = regex_content_more.exec(day.source_content);
 
                             if (result_content_more !== null) {
-                                var more = '[閱讀全文](./day/' + day.url + '.html)';
+                                var more = '[閱讀全文](../day/' + day.url + '.html)';
                                 day.content_list_html = md(result_content_more[1] + more);
                             }
 
