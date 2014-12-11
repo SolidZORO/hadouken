@@ -13,10 +13,11 @@ block container
                             a(href= HOME_PATH + PATH.DAY + data.url + '.html') #{data.title}
                         .date #{data.date_zh}
 
-                        .typo
+                        .typo.clearfix
                             - if (data.banner_thumb)
                                 .banner-thumb
-                                    img(src= HOME_PATH + data.banner_thumb)
+                                    a(href= HOME_PATH + PATH.DAY + data.url + '.html')
+                                        img(src= HOME_PATH + data.banner_thumb)
                             - if (data.content_list_html)
                                 |!{data.content_list_html}
                             - else

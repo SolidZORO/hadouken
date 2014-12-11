@@ -1,4 +1,10 @@
 doctype html
+//     __  _____    ____  ____  __  ____ __ _______   __
+//    / / / /   |  / __ \/ __ \/ / / / //_// ____/ | / /
+//   / /_/ / /| | / / / / / / / / / / ,<  / __/ /  |/ /
+//  / __  / ___ |/ /_/ / /_/ / /_/ / /| |/ /___/ /|  /
+// /_/ /_/_/  |_/_____/\____/\____/_/ |_/_____/_/ |_/
+
 html(lang='zh')
     head
         meta(charset='utf-8')
@@ -12,13 +18,10 @@ html(lang='zh')
             link(rel='stylesheet', href= HOME_PATH + 'themes/ryu/assets/css/style.css')
         block script
             script(src= HOME_PATH + 'themes/ryu/assets/js/app.js')
-
         meta(name='apple-mobile-web-app-title', content=CONFIG.SITE_NAME)
         link(rel="apple-touch-icon-precomposed", href= HOME_PATH + 'themes/ryu/assets/img/favicon/favicon_144.png' size="144x144")
         link(rel="shortcut icon" href= HOME_PATH + 'themes/ryu/assets/img/favicon/favicon.ico')
-
-
-    body.katana
+    body(class= 'katana ' + BODY_CLASS)
         include header.jade
         block container
         include footer.jade

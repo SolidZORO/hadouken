@@ -1,0 +1,65 @@
+// 頭部
+.saya-header {
+    height: 80px;
+
+    .saya {
+        width: auto;
+        padding: 0;
+    }
+
+    .logo {
+        position: absolute;
+        font-size: 120%;
+        top: 20px;
+        left: 2%;
+
+        @media (min-width: @screen-sm-min) {
+        left: 20px;
+        }
+
+        a {
+            .spriteMain;
+            width: 53px;
+            height: 38px;
+            text-indent: -9999em;
+
+            @media (min-width: @screen-sm-min) {
+                opacity: 0.2;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .nav {
+        position: absolute;
+        top: 25px;
+        right: 2%;
+
+        @media (min-width: @screen-sm-min) {
+            right: 20px;
+        }
+
+        ul {
+            li {
+                display: inline;
+                padding: 0 10px;
+
+                a {
+                    font-size: 90%;
+                    color: #111;
+
+                    @media (min-width: @screen-sm-min) {
+                        opacity: 0.3;
+
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
