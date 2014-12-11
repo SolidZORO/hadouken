@@ -9,8 +9,8 @@ body {
 }
 
 .saya {
-    width: 96%;
-    padding: 0 3%;
+    width: 92%;
+    padding: 0 4%;
 
     @media (min-width: @screen-sm-min) {
         width: 720px;
@@ -18,6 +18,18 @@ body {
         padding: 0 20px;
     }
 }
+
+.clearfix {
+    &:before, &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+
 
 ul, ol {
     margin: 0;

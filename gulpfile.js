@@ -28,7 +28,7 @@ gulp.task('less_ryu', function () {
         .pipe(header(banner, {
             date: date
         }))
-        .pipe(gulp.dest('themes/ryu/assets/css'))
+        .pipe(gulp.dest('themes/ryu/assets/css/'))
         .pipe(livereload());
 });
 
@@ -50,7 +50,7 @@ gulp.task('js_ryu', function () {
             date: date
         }))
         .pipe(rename('app.js'))
-        .pipe(gulp.dest('themes/ryu/assets/js'));
+        .pipe(gulp.dest('themes/ryu/assets/js/'));
 });
 
 
@@ -59,8 +59,8 @@ gulp.task('js_ryu', function () {
 //// 監控 //////////////////////////////////////////////////////////////////////////////////////////////////////
 gulp.task('watching', function () {
 
-    gulp.watch('themes/ryu/_source/less/*.less', ['less_ryu']);
-    gulp.watch('themes/ryu/_source/js/*.js', ['js_ryu']);
+    gulp.watch('themes/ryu/_source/less/**/*.less', ['less_ryu']);
+    gulp.watch('themes/ryu/_source/js/**/*.js', ['js_ryu']);
 
     var server = livereload();
     gulp.watch('themes/ryu/**/*').on('change', function (file) {
