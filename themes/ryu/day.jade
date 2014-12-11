@@ -11,9 +11,9 @@ block container
                     h1.title #{data.title}
                     .date #{data.date_zh}
                     .typo.clearfix
-                        - if (data.banner)
+                        - if (data.banner_origin)
                             .banner
-                                img(src= HOME_PATH + data.banner)
+                                img(src= HOME_PATH + data.banner_origin)
                         |!{data.content_html}
 
                     - if (data.tags)
