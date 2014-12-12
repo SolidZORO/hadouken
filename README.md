@@ -13,7 +13,7 @@ HADOUKEN是一個用nodejs寫的[dayone](href="http://dayoneapp.com" target="_bl
 
 所以，HADOUKEN的初衷很簡單，就是為了打破dayone限制，讓其能夠HTML化、部署到部落格上的工具。
 
-[Demo](href="http://solidzoro.com" target="_blank")
+[要看Demo可以點這裏](href="http://solidzoro.com" target="_blank") 。
 
 還搞不明白HADOUKEN為何物？沒關係，見下圖。
 ![HADOUKEN](https://raw.githubusercontent.com/SolidZORO/HADOUKEN/master/HADOUKEN.jpg)
