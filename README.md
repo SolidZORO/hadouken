@@ -1,6 +1,6 @@
 HADOUKEN
 ===========
-HADOUKEN是一個用nodejs寫的[dayone](href="http://dayoneapp.com" target="_blank")日誌轉換工具，用於把dayone的日誌處理成html。
+HADOUKEN是一個用nodejs寫的[dayone](href=http://dayoneapp.com target="_blank")日誌轉換工具，用於把dayone的日誌處理成html。
 
 > 項目名HADOUKEN，中文翻譯為「波動拳」，源於街霸裏Ryu（隆）的必殺技。
 
@@ -13,7 +13,8 @@ HADOUKEN是一個用nodejs寫的[dayone](href="http://dayoneapp.com" target="_bl
 
 所以，HADOUKEN的初衷很簡單，就是為了打破dayone限制，讓其能夠HTML化、部署到部落格上的工具。
 
-[要看Demo可以點這裏](href="http://solidzoro.com" target="_blank") 。
+[要看Demo可以點這裏](http://solidzoro.com target="_blank") 。
+
 
 還搞不明白HADOUKEN為何物？沒關係，見下圖。
 ![HADOUKEN](https://raw.githubusercontent.com/SolidZORO/HADOUKEN/master/HADOUKEN.jpg)
@@ -25,14 +26,16 @@ btw：Ryu是我玩街霸時最愛用的角色，因此HADOUKEN的默認主題名
 
 使用方式
 ------------
-git clone回來，先修改run.js裏的DIR_ENTRIES為你的dayone日誌目錄，然後切到終端：
+* git clone回來。
+* 修改run.js裏的CONFIG。
+* 切到終端：
 
 ```
 node install
 node run.js
 ```
 
-生成dayone日誌索引以日誌正文。
+便會得到生成的dayone日誌索引以日誌正文html。
 
 
 
