@@ -31,7 +31,7 @@ btw：Ryu是我玩街霸時最愛用的角色，因此HADOUKEN的默認主題名
 * 切到終端：
 
 ```
-node install
+npm install
 node run.js
 ```
 
