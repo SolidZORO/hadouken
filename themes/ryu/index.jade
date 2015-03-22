@@ -10,14 +10,14 @@ block container
                 each data in datas
                     .item
                         h2.title
-                            a(href= HOME_PATH + PATH.DAY + data.url + '.html') #{data.title}
+                            a(href= CONFIG.SITE_URL + PATH.ARTICLE + data.url + '.html') #{data.title}
                         .date #{data.date_zh}
 
                         .typo.clearfix
                             - if (data.banner_thumb)
                                 .banner-thumb
-                                    a(href= HOME_PATH + PATH.DAY + data.url + '.html')
-                                        img(src= HOME_PATH + data.banner_thumb)
+                                    a(href= CONFIG.SITE_URL + PATH.ARTICLE + data.url + '.html')
+                                        img(src= CONFIG.SITE_URL + data.banner_thumb)
                             - if (data.content_list_html)
                                 |!{data.content_list_html}
                             - else

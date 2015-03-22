@@ -35,27 +35,30 @@ var CONFIG = {
     SITE_NAME: 'SolidZORO',
     // 站點說明
     SITE_DESC: '黑魔法師。',
-    // 站點網址
-    SITE_URL: 'http://solidzoro.com',
+    // 站點網址(debug模式)
+    // SITE_URL: 'file:///Users/SolidZORO/Sites/github/blog/',
+    // 站點網址(線上模式)
+    SITE_URL: 'http://solidzoro.com/blog/',
+
     // 輸出首頁的名字，如果你的站點index.html已被佔用，可改成其他。
     INDEX: 'index.html',
     // 縮略圖大小（自定義）
     BANNER_THUMB_SIZE: '480',
     // 几篇日志翻一页？
-    PAGE_NUM: 15,
+    PAGE_NUM: 20,
     // 如果日誌中有這個Tag，則不生成到html中。
     KEEP_LOCAL: '秘密',
     // 自定義閱讀
-    READ_MORE: '閱讀全文',
+    READ_MORE_TEXT: '閱讀全文',
 
-
+    // 附件
     ATTACHMENT: 'attachment',
     BANNER_ORIGIN: 'origin',
     BANNER_THUMB: 'thumb',
 
-    DAY: 'day',
+    ARTICLE: 'article',
     TAG: 'tag',
-    PAGE: 'p'
+    PAGE: 'page'
 }
 
 // 路徑
@@ -65,7 +68,7 @@ var PATH = {
     BANNER_THUMB: './' + CONFIG.ATTACHMENT + '/' + CONFIG.BANNER_THUMB + '/',
     BANNER_THUMB_SIZE: './' + CONFIG.ATTACHMENT + '/' + CONFIG.BANNER_THUMB + '/' + CONFIG.BANNER_THUMB_SIZE + '/',
 
-    DAY: './' + CONFIG.DAY + '/',
+    ARTICLE: './' + CONFIG.ARTICLE + '/',
     TAG: './' + CONFIG.TAG + '/',
     PAGE: './' + CONFIG.PAGE + '/',
     DAYONE_ENTRIES: '/Users/' + CONFIG.USERNAME + '/Library/Mobile\ Documents/5U8NS4GX82\~com\~dayoneapp\~dayone/Documents/Journal_dayone/entries/',
@@ -85,10 +88,10 @@ var ACTIVITY = ['Stationary', 'Walking', 'Running', 'Biking', 'Easting', 'Automo
 /////////////////////////////////////////////////////////////
 // #變量
 // [數組] 所有日誌，entries實在不好拼，所以取簡單一點的day好了，而且我去掉了複數。
-var all_day = [];
+var all_article = [];
 
 // 日誌長度
-var all_day_length = 0;
+var all_article_length = 0;
 
 // [數組] 所有Tag
 var all_tag = [];
@@ -133,7 +136,7 @@ function in_array(needle, haystack, argStrict) {
 // console.log(CONFIG.BANNER_ORIGIN);
 // console.log(CONFIG.BANNER_THUMB);
 // console.log(CONFIG.BANNER_THUMB_SIZE);
-// console.log(CONFIG.DAY);
+// console.log(CONFIG.ARTICLE);
 // console.log(CONFIG.TAG);
 // console.log(CONFIG.PAGE);
 // console.log('--------------------------');
@@ -141,7 +144,7 @@ function in_array(needle, haystack, argStrict) {
 // console.log(PATH.BANNER_ORIGIN);
 // console.log(PATH.BANNER_THUMB);
 // console.log(PATH.BANNER_THUMB_SIZE);
-// console.log(PATH.DAY);
+// console.log(PATH.ARTICLE);
 // console.log(PATH.TAG);
 // console.log(PATH.PAGE);
 // console.log(PATH.DAYONE_ENTRIES);
@@ -165,8 +168,8 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
     // 清除文件夾
     /////////////////////////////////////////////////////////////
     // 日誌詳細頁
-    if (fs.existsSync(PATH.DAY)) {
-        sugar.rmrDirSync(PATH.DAY);
+    if (fs.existsSync(PATH.ARTICLE)) {
+        sugar.rmrDirSync(PATH.ARTICLE);
     }
     // 日誌Tag
     if (fs.existsSync(PATH.TAG)) {
@@ -190,8 +193,8 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
     // 創建文件夾
     /////////////////////////////////////////////////////////////
     // 日誌詳細頁
-    if (!fs.existsSync(PATH.DAY)) {
-        fs.mkdirSync(PATH.DAY);
+    if (!fs.existsSync(PATH.ARTICLE)) {
+        fs.mkdirSync(PATH.ARTICLE);
     }
     // 日誌Tag
     if (!fs.existsSync(PATH.TAG)) {
@@ -224,7 +227,7 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
 
     /////////////////////////////////////////////////////////////
     // 遍歷dayone日誌 S
-    // readdirSync裡的i計數器其實沒有用到，因為我初始化了 all_day_length。
+    // readdirSync裡的i計數器其實沒有用到，因為我初始化了 all_article_length。
     /////////////////////////////////////////////////////////////
     fs.readdirSync(PATH.DAYONE_ENTRIES).forEach(function (file, i) {
 
@@ -251,50 +254,50 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
 
                     // [對象] 每一個日誌都是一個對象，這個{}一定要放在這裏，放在外面就bug了。大坑啊！
                     // TODO，如果知道原理的同學可以告訴我一下原理： solidzoro __ icloud __ com
-                    var day = {};
+                    var article = {};
 
                     // 狀態，如果日誌沒有狀態，就設定為空''
                     if (!in_array(day_json.plist.dict[0].string[0], ACTIVITY)) {
                         day_json.plist.dict[0].string.splice(0, 0, '');
                     }
-                    day.activity = day_json.plist.dict[0].string[0];
+                    article.activity = day_json.plist.dict[0].string[0];
 
 
                     // ID
-                    day.id = day_json.plist.dict[0].string[3];
+                    article.id = day_json.plist.dict[0].string[3];
 
 
                     // 日期（原格式為 2014-11-23T15:32:15Z）
-                    day.source_date = day_json.plist.dict[0].date[0];
+                    article.source_date = day_json.plist.dict[0].date[0];
 
 
                     // 處理時間
-                    day.source_date = day.source_date.replace(/T/, " ");
-                    day.source_date = day.source_date.replace(/Z/, '');
+                    article.source_date = article.source_date.replace(/T/, " ");
+                    article.source_date = article.source_date.replace(/Z/, '');
 
-                    day.timestamp = new Date(day.source_date);
-                    day.timestamp = day.timestamp.getTime() / 1000;
-                    day.source_timestamp = new Date(day.timestamp * 1000);
+                    article.timestamp = new Date(article.source_date);
+                    article.timestamp = article.timestamp.getTime() / 1000;
+                    article.source_timestamp = new Date(article.timestamp * 1000);
 
-                    var day_date_Y = day.source_timestamp.getFullYear();
-                    var day_date_M = (day.source_timestamp.getMonth() + 1) < 10 ? '0' + (day.source_timestamp.getMonth() + 1) : day.source_timestamp.getMonth() + 1;
-                    var day_date_D = day.source_timestamp.getDate() < 10 ? '0' + day.source_timestamp.getDate() : day.source_timestamp.getDate();
-                    var day_date_h = day.source_timestamp.getHours() < 10 ? '0' + day.source_timestamp.getHours() : day.source_timestamp.getHours();
-                    var day_date_m = day.source_timestamp.getMinutes() < 10 ? '0' + day.source_timestamp.getMinutes() : day.source_timestamp.getMinutes();
-                    var day_date_s = day.source_timestamp.getSeconds() < 10 ? '0' + day.source_timestamp.getSeconds() : day.source_timestamp.getSeconds();
+                    var day_date_Y = article.source_timestamp.getFullYear();
+                    var day_date_M = (article.source_timestamp.getMonth() + 1) < 10 ? '0' + (article.source_timestamp.getMonth() + 1) : article.source_timestamp.getMonth() + 1;
+                    var day_date_D = article.source_timestamp.getDate() < 10 ? '0' + article.source_timestamp.getDate() : article.source_timestamp.getDate();
+                    var day_date_h = article.source_timestamp.getHours() < 10 ? '0' + article.source_timestamp.getHours() : article.source_timestamp.getHours();
+                    var day_date_m = article.source_timestamp.getMinutes() < 10 ? '0' + article.source_timestamp.getMinutes() : article.source_timestamp.getMinutes();
+                    var day_date_s = article.source_timestamp.getSeconds() < 10 ? '0' + article.source_timestamp.getSeconds() : article.source_timestamp.getSeconds();
 
-                    day.date = day_date_Y + '-' + day_date_M + '-' + day_date_D;
-                    day.date_zh = day_date_Y + '年 ' + day_date_M + '月 ' + day_date_D + '日';
+                    article.date = day_date_Y + '-' + day_date_M + '-' + day_date_D;
+                    article.date_zh = day_date_Y + '年 ' + day_date_M + '月 ' + day_date_D + '日';
 
                     // URL
-                    day.url = day_date_Y + '-' + day_date_M + '-' + day_date_D + '-' + day_date_h + day_date_m + day_date_s;
+                    article.url = day_date_Y + '-' + day_date_M + '-' + day_date_D + '-' + day_date_h + day_date_m + day_date_s;
 
 
 
                     // 把只有一個字段的日誌分解成 標題與內容，順便把配圖也找一下 S
-                    day.source_title_and_content = day_json.plist.dict[0].string[1];
+                    article.source_title_and_content = day_json.plist.dict[0].string[1];
 
-                    if (day.source_title_and_content !== '') {
+                    if (article.source_title_and_content !== '') {
 
                         // 正則 標題
                         var regex_title = /(.{2,})(?:\n\n)?/;
@@ -302,60 +305,60 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
                         var regex_title_and_content = /(.{2,})(?:\n\n)?((?:.|\n)*)?/;
 
                         // 結果 標題
-                        var result_title = regex_title.exec(day.source_title_and_content);
+                        var result_title = regex_title.exec(article.source_title_and_content);
                         // 結果 標題+內容
-                        var result_title_and_content = regex_title_and_content.exec(day.source_title_and_content);
+                        var result_title_and_content = regex_title_and_content.exec(article.source_title_and_content);
 
 
                         // 假如日誌有標題的話
                         if (result_title[0]) {
 
                             // 標題賦值（去掉還行）
-                            day.title = result_title[0].replace(/[\r\n]/g, "");
+                            article.title = result_title[0].replace(/[\r\n]/g, "");
 
                             // 處理日誌內容，以及markdown化 S
                             if (result_title_and_content[2]) {
-                                day.source_content = result_title_and_content[2];
+                                article.source_content = result_title_and_content[2];
 
                                 // 擷取more
                                 var regex_content_more = /((:?.|\n)*?)<!--\s?more\s?-->/;
-                                var result_content_more = regex_content_more.exec(day.source_content);
+                                var result_content_more = regex_content_more.exec(article.source_content);
 
                                 if (result_content_more !== null) {
-                                    // var more = '[' + CONFIG.READ_MORE + '](../day/' + day.url + '.html){class="read_more"}';
-                                    var more = '<a href="../day/' + day.url + '.html" class="read_more">' + CONFIG.READ_MORE + '</a>';
-                                    day.content_list_html = md(result_content_more[1] + more);
+                                    // var more = '[' + CONFIG.READ_MORE_TEXT + '](../day/' + article.url + '.html){class="READ_MORE_TEXT"}';
+                                    var more = '<a href="' + CONFIG.SITE_URL + CONFIG.ARTICLE + '/' + article.url + '.html" class="read_more">' + CONFIG.READ_MORE_TEXT + '</a>';
+                                    article.content_list_html = md(result_content_more[1] + more);
                                 }
 
-                                day.content = day.source_content;
+                                article.content = article.source_content;
                             } else {
-                                day.content = "這篇日誌沒有內容。";
+                                article.content = "這篇日誌沒有內容。";
                             };
 
-                            day.content_html = md(day.content);
+                            article.content_html = md(article.content);
                             // 處理日誌內容，以及markdown化 S
 
 
 
                             // 拼接日誌配圖路徑（都是jpg的，如果不是jpg，dayone也會轉成jpg）
-                            day.source_banner = PATH.BANNER_ORIGIN + day.id + '.jpg';
+                            article.source_banner = PATH.BANNER_ORIGIN + article.id + '.jpg';
 
 
                             // 如果找到日誌配圖圖片，就賦值並壓縮小圖 S
-                            if (fs.existsSync(day.source_banner)) {
+                            if (fs.existsSync(article.source_banner)) {
 
                                 // 原圖
-                                day.banner_origin = day.source_banner;
+                                article.banner_origin = article.source_banner;
 
                                 // 壓縮成指定大小的圖片
-                                gm(day.banner_origin).resize(CONFIG.BANNER_THUMB_SIZE).write(PATH.BANNER_THUMB_SIZE + day.id + '.jpg', function (err) {
+                                gm(article.banner_origin).resize(CONFIG.BANNER_THUMB_SIZE).write(PATH.BANNER_THUMB_SIZE + article.id + '.jpg', function (err) {
                                     if (err) {
                                         return console.dir(arguments);
                                     }
                                 });
 
                                 // 縮略圖
-                                day.banner_thumb = PATH.BANNER_THUMB_SIZE + day.id + '.jpg';
+                                article.banner_thumb = PATH.BANNER_THUMB_SIZE + article.id + '.jpg';
 
                             };
                             // 如果找到日誌配圖圖片，就賦值並壓縮小圖 E
@@ -370,24 +373,24 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
                     // 遍歷日誌Tag S
                     if (typeof (day_json.plist.dict[0].array) !== "undefined") {
 
-                        day.source_tags = day_json.plist.dict[0].array[0].string;
+                        article.source_tags = day_json.plist.dict[0].array[0].string;
 
                         // 這裏for只是用來遍歷tag，把all_tag裏不存在的tag壓到all_tag裏
-                        for (var i in day.source_tags) {
-                            if (!in_array(day.source_tags[i], all_tag)) {
-                                all_tag.push(day.source_tags[i]);
+                        for (var i in article.source_tags) {
+                            if (!in_array(article.source_tags[i], all_tag)) {
+                                all_tag.push(article.source_tags[i]);
                             }
                         }
 
                         // 這裏為什麼有這個？？
-                        day.tags = day.source_tags;
+                        article.tags = article.source_tags;
                     }
                     // 遍歷日誌Tag E
 
 
                     // 全部處理完後就賦值給日誌數組
-                    all_day[all_day_length] = day;
-                    all_day_length++;
+                    all_article[all_article_length] = article;
+                    all_article_length++;
                 }
                 // 如果日誌tags裏有「秘密」或你自定義的隱私keyword，就排除掉這篇日誌 E
 
@@ -396,8 +399,8 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
 
 
 
-            // console.log(day.title);
-            // all_day.push(day);
+            // console.log(article.title);
+            // all_article.push(day);
         }
         // 假如找到了dayone日誌文件，就開始處理它們 E
 
@@ -415,8 +418,8 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
     /////////////////////////////////////////////////////////////
     // 按發布日期倒序日誌排列。
     /////////////////////////////////////////////////////////////
-    all_day = all_day.slice(0);
-    all_day.sort(function (a, b) {
+    all_article = all_article.slice(0);
+    all_article.sort(function (a, b) {
         return b.timestamp - a.timestamp;
     });
 
@@ -428,9 +431,9 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
     // 通用分頁計數器
     /////////////////////////////////////////////////////////////
     // 對日誌總數取餘
-    var totle_page_num_temp1 = all_day_length % CONFIG.PAGE_NUM;
+    var totle_page_num_temp1 = all_article_length % CONFIG.PAGE_NUM;
     // 計算日誌的頁數
-    var totle_page_num_temp2 = all_day_length / CONFIG.PAGE_NUM;
+    var totle_page_num_temp2 = all_article_length / CONFIG.PAGE_NUM;
 
     // 如果 日誌總數/每頁日誌數==0（比如15%5，剛好除盡，就給3頁）
     if (totle_page_num_temp1 == 0) {
@@ -450,19 +453,19 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
     /////////////////////////////////////////////////////////////
     // 首頁渲染並寫入 S
     /////////////////////////////////////////////////////////////
-    var all_day_index = [];
+    var all_article_index = [];
     for (var i = 0; i < CONFIG.PAGE_NUM; i++) {
-        all_day_index.push(all_day[i]);
+        all_article_index.push(all_article[i]);
     }
     var jade_index = jade.compileFile('./themes/' + CONFIG.THEME + '/index.jade');
     var html_data = jade_index({
-        HOME_PATH: './',
+        // HOME_PATH: './',
         BODY_CLASS: 'katana-list katana-index',
         CONFIG: CONFIG,
         PATH: PATH,
         totle_page_num: totle_page_num,
         current_page_num: 1,
-        datas: all_day_index
+        datas: all_article_index
     });
     fs.writeFileSync(CONFIG.INDEX, html_data);
     // 首頁渲染並寫入 E
@@ -475,26 +478,26 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
     /////////////////////////////////////////////////////////////
     // 單篇日誌渲染並寫入 S
     /////////////////////////////////////////////////////////////
-    var jade_day = jade.compileFile('./themes/' + CONFIG.THEME + '/day.jade');
+    var jade_day = jade.compileFile('./themes/' + CONFIG.THEME + '/article.jade');
 
     // 遍歷日誌數量
-    for (var i = 0; i < all_day_length; i++) {
+    for (var i = 0; i < all_article_length; i++) {
 
         // jade模板賦值
         var html_data = jade_day({
-            HOME_PATH: '../',
+            // HOME_PATH: '../',
             BODY_CLASS: 'katana-detaile katana-day',
             CONFIG: CONFIG,
             PATH: PATH,
-            title: all_day[i].title,
-            data: all_day[i]
+            title: all_article[i].title,
+            data: all_article[i]
         });
 
 
-        if (!fs.existsSync(PATH.DAY)) {
-            fs.mkdirSync(PATH.DAY);
+        if (!fs.existsSync(PATH.ARTICLE)) {
+            fs.mkdirSync(PATH.ARTICLE);
         }
-        fs.writeFileSync(PATH.DAY + all_day[i].url + '.html', html_data);
+        fs.writeFileSync(PATH.ARTICLE + all_article[i].url + '.html', html_data);
 
     }
     // 單篇日誌渲染並寫入 E
@@ -512,11 +515,11 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
     var one_page = [];
     var jade_page = jade.compileFile('./themes/' + CONFIG.THEME + '/page.jade');
 
-    for (var i = 0, p = 0; i < all_day_length; i += CONFIG.PAGE_NUM) {
+    for (var i = 0, p = 0; i < all_article_length; i += CONFIG.PAGE_NUM) {
 
-        one_page.push(all_day.slice(i, i + CONFIG.PAGE_NUM));
+        one_page.push(all_article.slice(i, i + CONFIG.PAGE_NUM));
         var html_data = jade_page({
-            HOME_PATH: '../',
+            // HOME_PATH: '../',
             BODY_CLASS: 'katana-list katana-page',
             CONFIG: CONFIG,
             PATH: PATH,
@@ -553,19 +556,19 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
         tag_collection[t] = [];
 
         // 遍歷日誌
-        for (var e = 0; e < all_day_length; e++) {
+        for (var e = 0; e < all_article_length; e++) {
             // 過濾沒有tag的日誌
-            if ((typeof (all_day[e].tags)) !== 'undefined') {
+            if ((typeof (all_article[e].tags)) !== 'undefined') {
                 // 交叉對比，得到結果push到單個tag日誌文件裏
-                if (in_array(all_tag[t], all_day[e].tags)) {
-                    tag_collection[t].push(all_day[e]);
+                if (in_array(all_tag[t], all_article[e].tags)) {
+                    tag_collection[t].push(all_article[e]);
                 }
             }
         }
 
         // jade模板賦值
         var html_data = jade_tag({
-            HOME_PATH: '../',
+            // HOME_PATH: '../',
             BODY_CLASS: 'katana-list katana-tag',
             CONFIG: CONFIG,
             PATH: PATH,
@@ -589,6 +592,6 @@ if (fs.existsSync(PATH.DAYONE_ENTRIES)) {
     /////////////////////////////////////////////////////////////
     // 完畢提示
     /////////////////////////////////////////////////////////////
-    console.log('\n全部日誌轉換完畢。\n共' + all_day_length + '篇，分' + totle_page_num + '頁輸出。');
+    console.log('\n全部日誌轉換完畢。\n共' + all_article_length + '篇，分' + totle_page_num + '頁輸出。');
 
 }

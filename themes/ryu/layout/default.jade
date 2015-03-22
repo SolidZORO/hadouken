@@ -15,12 +15,12 @@ html(lang='zh')
         meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
         meta(name='renderer', content='webkit')
         block style
-            link(rel='stylesheet', href= HOME_PATH + 'themes/ryu/assets/css/style.css')
+            link(rel='stylesheet', href= CONFIG.SITE_URL + 'themes/ryu/assets/css/style.css')
         block script
-            script(src= HOME_PATH + 'themes/ryu/assets/js/app.js')
+            script(src= CONFIG.SITE_URL + 'themes/ryu/assets/js/app.js')
         meta(name='apple-mobile-web-app-title', content=CONFIG.SITE_NAME)
-        link(rel="apple-touch-icon-precomposed", href= HOME_PATH + 'themes/ryu/assets/img/favicon/favicon_144.png' size="144x144")
-        link(rel="shortcut icon" href= HOME_PATH + 'themes/ryu/assets/img/favicon/favicon.ico')
+        link(rel="apple-touch-icon-precomposed", href= CONFIG.SITE_URL + 'themes/ryu/assets/img/favicon/favicon_144.png' size="144x144")
+        link(rel="shortcut icon" href= CONFIG.SITE_URL + 'themes/ryu/assets/img/favicon/favicon.ico')
     body(class= 'katana ' + BODY_CLASS)
         include header.jade
         block container

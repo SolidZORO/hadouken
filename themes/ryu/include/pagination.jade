@@ -1,8 +1,8 @@
 .pagination
     - for (var i = 0; i < totle_page_num; i++)
         - if ( (i + 1) == current_page_num)
-            a.current(href= HOME_PATH + 'p/' + (i + 1) + '.html')
+            a.current(href= CONFIG.SITE_URL + 'page/' + (i + 1) + '.html')
                 strong #{i + 1}
         - else
-            a.normal(href= HOME_PATH + 'p/' + (i + 1) + '.html')
+            a.normal(href= CONFIG.SITE_URL + 'page/' + (i + 1) + '.html')
                 span #{i + 1}
